@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Movie Listing</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+	<style>
+		#tabs li .ui-icon-close {
+			float: left;
+			margin: 0.4em 0.2em 0 0;
+			cursor: pointer;
+		}
+		#movie-list {
+			float: left;
+			width: 200px;
+			position: fixed;
+			border-right: 2px solid black;
+			min-height: 100%;
+		}
+		.ui-tabs {
+			float: left;
+			width: 800px;
+			width: calc( 100% - 300px );
+			margin-left: 250px;
+		}
+	</style>
+</head>
+<body>
+
+<div id="movie-list" class="ui-widget">
+	<h2>Movie List</h2>
+	<ul>
+		<li><a href="movie.php?movie=ghostbusters">Ghostbusters</a></li>
+		<li><a href="movie.php?movie=titanic">Titanic</a></li>
+		<li><a href="movie.php?movie=top_gun">Top Gun</a></li>
+	</ul>
+</div>
+
+<div id="tabs">
+	<ul>
+		<li><a href="#intro">Introduction</a></li>
+	</ul>
+	<div id="intro">
+		Welcome, select movies and their information will appear here.
+	</div>
+</div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	var tabs = $( "#tabs" ).tabs();
+
+	$( "#movie-list" ).on( "click", "a", function( event ) {
+		event.preventDefault();
+
+		var index,
+			movie = this.innerHTML,
+			existing = tabs.find( "[data-movie='" + movie + "']" );
+
+		if ( existing.length == 0 ) {
+			tabs.find( ".ui-tabs-nav" )
+				.append( "<li data-movie='" + movie + "'>" +
+				  "<a href='" + this.href + "'>" + movie + "</a>" +
+				  "<span class='ui-icon ui-icon-close'>Remove Tab</span>" +
+				  "</li>" );
+			tabs.tabs( "refresh" );
+		}
+
+		existing = tabs.find( "[data-movie='" + movie + "']" );
+		index = tabs.find( ".ui-tabs-nav li" ).index( existing );
+		tabs.tabs( "option", "active", index );
+	});
+
+	tabs.on( "click", ".ui-icon-close", function() {
+		var panelId = $( this ).closest( "li" ).remove()
+			.attr( "aria-controls" );
+		$( "#" + panelId ).remove();
+		tabs.tabs( "refresh" );
+	});
+</script>
+
+</body>
+</html>

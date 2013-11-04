@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Adding Accordion Panels</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="accordion"></div>
+
+<form>
+	<label for="header">Header:</label>
+	<input type="text" id="header" required>
+
+	<label for="content">Content:</label>
+	<textarea id="content" required></textarea>
+
+	<button>Add Panel</button>
+</form>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	var accordion = $( "#accordion" ).accordion();
+
+	$( "form" ).on( "submit", function( event ) {
+		event.preventDefault();
+		accordion.append(
+			"<h3>" + $( "#header" ).val() + "</h3>" +
+			"<div>" + $( "#content" ).val() + "</div>"
+		).accordion( "refresh" );
+		this.reset();
+	});
+</script>
+
+</body>
+</html>

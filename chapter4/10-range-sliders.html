@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Range Sliders</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+	<style>
+		.ui-slider { margin: 2em; }
+	</style>
+</head>
+<body>
+
+<div id="spinner-range"></div>
+<div id="spinner-range-min"></div>
+<div id="spinner-range-max"></div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "#spinner-range" ).slider({
+		range: true,
+		values: [ 25, 75 ]
+	});
+	$( "#spinner-range-min" ).slider({
+		range: "max",
+		value: 25
+	});
+	$( "#spinner-range-max" ).slider({
+		range: "max",
+		value: 75
+	});
+</script>
+
+</body>
+</html>

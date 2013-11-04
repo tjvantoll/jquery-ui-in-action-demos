@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Change Accordion Panels</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="accordion">
+	<h3>Header One</h3>
+	<div>Content One</div>
+	<h3>Header Two</h3>
+	<div>Content Two</div>
+</div>
+<button>Show One</button>
+<button>Show Two</button>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "#accordion" ).accordion();
+
+	$( "button:first" ).on( "click", function() {
+		$( "#accordion" ).accordion( "option", "active", 0 );
+	});
+	$( "button:last" ).on( "click", function() {
+		$( "#accordion" ).accordion( "option", "active", 1 );
+	});
+</script>
+
+</body>
+</html>

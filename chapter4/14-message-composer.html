@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Message Composer</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+	<style>
+		.ui-progressbar { margin-top: 20px; }
+		.ui-menu { width: 150px; }
+		#composer {
+			position: absolute;
+			left: 200px;
+		}
+		.ui-button.primary {
+			background: green;
+			color: white;
+		}
+		#message {
+			font-size: 1em;
+			width: 250px;
+			height: 100px;
+		}
+	</style>
+</head>
+<body>
+
+<div id="composer">
+	<h3>Message Composer</h3>
+	<textarea id="message"></textarea>
+</div>
+
+<ul id="menu">
+	<li>
+		<span class="ui-icon ui-icon-folder-open"></span>Load
+	</li>
+	<li class="ui-state-disabled" id="save-option">
+		<span class="ui-icon ui-icon-disk"></span>Save
+	</li>
+	<li></li>
+	<li>
+		<span class="ui-icon ui-icon-gear"></span>Settings
+	</li>
+	<li></li>
+	<li>
+		<span class="ui-icon ui-icon-trash"></span>Delete
+	</li>
+</ul>
+
+<div id="confirmDelete">
+	<p>Are you <strong>sure</strong> you want to delete your message?</p>
+</div>
+
+<div id="settingsDialog">
+	<p>Font Size:</p>
+	<div id="slider"></div>
+</div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "#confirmDelete" ).dialog({
+		autoOpen: false,
+		buttons: [
+			{
+				text: "Cancel",
+				click: function() {
+					$( this ).dialog( "close" );
+				}
+			},
+			{
+				text: "Yeah, Let's Do It",
+				click: function() {
+					deleteMessage();    
+					$( this ).dialog( "close" );
+				},
+				class: "primary"
+			}
+		],
+		minWidth: 400,
+		modal: true
+	});
+
+	$( "#settingsDialog" ).dialog({
+		autoOpen: false,
+		title: "Settings"
+	});
+	$( "#slider" ).slider({
+		range: "min",
+		value: 1,
+		min: 0.5,
+		max: 2.5,
+		step: 0.1,
+		slide: function( event, ui ) {
+			$( "#message" ).css( "font-size", ui.value + "em" );
+		}
+	});
+
+	function loadMessage() {
+		var message,
+			dialog = $( "<div>" ).dialog({
+				modal: true,
+				title: "Loading..."
+			}),
+			progressbar = $( "<div>" ).progressbar({ value: false });
+		
+		dialog.append( progressbar );
+		setTimeout(function() {
+			dialog.remove();
+			message = localStorage.getItem( "message" );
+			$( "#message" ).val( message );
+		}, Math.random() * 5000 );
+	};
+
+	$( "#menu li:first" ).tooltip({
+		content: function() {
+			var message = localStorage.getItem( "message" );
+			if ( message.length > 20 ) {
+				return message.substring( 0, 20 ) + "...";
+			} else {
+				return message;
+			}
+		},
+		show: { delay: 1000 },
+		items: "*",
+		position: {
+			my: "left center",
+			at: "right center"
+		}
+	});
+
+	function deleteMessage() {
+		$( "#message" ).val( "" );
+		localStorage.removeItem( "message", "" );
+	};
+
+	var menu = $( "#menu" ).menu({
+		select: function( event, ui ) {
+			var selection = $.trim( ui.item.text() ),
+				message = $( "#message" ).val();
+
+			switch( selection ) {
+				case "Load":
+					loadMessage();
+					break;
+				case "Save":
+					localStorage.setItem( "message", message );
+					break;
+				case "Settings":
+					$( "#settingsDialog" ).dialog( "open" );
+					break;
+				case "Delete":
+					$( "#confirmDelete" ).dialog( "open" );
+					break;
+			}
+		}
+	});
+
+	$( "#message" ).on( "keyup", function() {
+		var message = $( this ).val();
+		if ( message.length === 0 ) {
+			$( "#save-option" ).addClass( "ui-state-disabled" );
+		} else {
+			$( "#save-option" ).removeClass( "ui-state-disabled" );
+		}
+		menu.menu( "refresh" );
+	});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Determinate Progressbar</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+	<style>
+		.ui-button { margin-top: 1em; }
+		.ui-progressbar { position: relative; }
+		#progressbar-label {
+			position: absolute;
+			left: 50%;
+			top: 4px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<div id="progressbar">
+	<div id="progressbar-label">0%</div>
+</div>
+<button>Make Progress</button>
+
+<script>
+	$( "#progressbar" ).progressbar();
+
+	var button = $( "button" ).button().on( "click", function() {
+		var value = $( "#progressbar" ).progressbar( "value" );
+		
+		value += 10;
+		$( "#progressbar" ).progressbar( "value", value );
+		$( "#progressbar-label" ).html( value + "%" );
+		if ( value === 100 ) {
+			button.button( "disable" );
+		}
+	});
+</script>
+
+</body>
+</html>
