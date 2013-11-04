@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Selectmenu Widget with optgroup Elements</title>
+
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+	<link href="https://rawgithub.com/jquery/jquery-ui/selectmenu/themes/base/jquery.ui.selectmenu.css" rel="stylesheet">
+
+	<style>
+		select { width: 200px; }
+	</style>
+</head>
+<body>
+
+<label for="doctor">Doctor:</label>
+<select id="doctor" name="doctor">
+	<option>No Preference</option>
+	<optgroup label="Doctors">
+		<option>Adams</option>
+		<option>Crowley</option>
+		<option>Smith</option>
+		<option>VanToll</option>
+	</optgroup>
+	<optgroup label="Nurses">
+		<option>Davis</option>
+		<option>Johnson</option>
+		<option>Jones</option>
+		<option>White</option>
+	</optgroup>
+</select>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+<script src="https://rawgithub.com/jquery/jquery-ui/selectmenu/ui/jquery.ui.selectmenu.js"></script>
+
+<script>
+	$( "select" ).selectmenu();
+</script>
+
+</body>
+</html>

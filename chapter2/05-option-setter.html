@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Using the option() Method as a Setter</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="dialog">One</div>
+<div class="dialog">Two</div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( ".dialog" )
+		.dialog()
+		.dialog( "option", "height", 600 )
+		.css( "color", "red" );
+</script>
+
+</body>
+</html>

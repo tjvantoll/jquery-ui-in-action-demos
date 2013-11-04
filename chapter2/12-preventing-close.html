@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Preveting a Dialog from Closing with preventDefault()</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="dialog">
+	<input type="checkbox">
+</div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "#dialog" ).dialog({
+		beforeClose: function( event, ui ) {
+			if ( !$( this ).find( "[type=checkbox]" ).prop( "checked" ) ) {
+				event.preventDefault();
+			}
+		}
+	});
+</script>
+
+</body>
+</html>

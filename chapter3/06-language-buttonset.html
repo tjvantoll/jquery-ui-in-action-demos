@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Language Buttonset</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+</head>
+<body>
+
+<span id="buttonset">
+	<label for="language-en">English</label>
+	<input type="radio" id="language-en" name="language" value="" checked>
+	<label for="language-es">Español</label>
+	<input type="radio" id="language-es" name="language" value="es">
+</span>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "#buttonset" ).buttonset();
+</script>
+
+</body>
+</html>

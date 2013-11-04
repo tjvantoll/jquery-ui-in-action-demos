@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Complete Appointment Form</title>
+
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+	<link href="https://rawgithub.com/jquery/jquery-ui/selectmenu/themes/base/jquery.ui.selectmenu.css" rel="stylesheet">
+
+	<style>
+		fieldset { padding: 1em; }
+		label { display: block; margin: 1em 0 0 0; }
+		#buttonset { display: inline-block; margin-top: 0.3em; }
+		span label { display: inline-block; margin: 0; }
+		select, input[type="text"] { width: 200px; font-size: 1.1em; }
+		input[type="text"] { padding: 0.2em; }
+		button { margin-top: 1em; }
+		.ui-selectmenu-button { margin-top: 0.2em; }
+		.ui-selectmenu-button span.ui-selectmenu-text {
+			padding: 0.2em 0 0.2em 1em;
+		}
+	</style>
+</head>
+<body>
+
+<form method="POST" action="/path/to/server">
+	<fieldset>
+		<legend>Request Doctor Appointment</legend>
+		<div>
+			<label>Language:</label>
+			<span id="buttonset">
+				<label for="language-en">English</label>
+				<input type="radio" id="language-en" name="language"
+				  value="" checked>
+				<label for="language-es">Español</label>
+				<input type="radio" id="language-es" name="language" 
+				  value="es">
+			</span>
+		</div>
+		<div>
+			<label for="doctor">Doctor:</label>
+			<select id="doctor" name="doctor">
+				<option>No Preference</option>
+				<optgroup label="Doctors">
+					<option>Adams</option>
+					<option>Crowley</option>
+					<option>Smith</option>
+					<option>VanToll</option>
+				</optgroup>
+				<optgroup label="Nurses">
+					<option>Davis</option>
+					<option>Johnson</option>
+					<option>Jones</option>
+					<option>White</option>
+				</optgroup>
+			</select>
+		</div>
+		<div>
+			<label for="date">Date:</label>
+			<input type="text" name="date" id="date">
+		</div>
+		<div>
+			<label for="insurance">Insurance:</label>
+			<input type="text" name="insurance" id="insurance">
+		</div>
+		<div>
+			<label for="days">Number of Days Sick:</label>
+			<input type="text" id="days" name="days">
+		</div>
+		<div>
+			<button>Make Appointment</button>
+		</div>
+	</fieldset>
+</form>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+<script src="https://rawgithub.com/jquery/jquery-ui/selectmenu/ui/jquery.ui.selectmenu.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/i18n/jquery-ui-i18n.min.js"></script>
+
+<script>
+	$( "#buttonset" ).buttonset();
+	$( "[name='language']" ).on( "change", function() {
+		$( "#date" )
+			.datepicker( "option", $.datepicker.regional[ this.value ] );
+	});
+
+	$( "#doctor" ).selectmenu();
+
+	$( "#insurance" ).autocomplete({
+		minLength: 2,
+		source: "search.php"
+	});
+
+	$.datepicker.setDefaults( $.datepicker.regional[ "" ] );
+	$( "#date" ).datepicker({
+		beforeShowDay: function( date ) {
+			var isWeekday = date.getDay() > 0 && date.getDay() < 6;
+			if ( $( "#doctor" ).val() === "Smith" ) {
+				return [ isWeekday && date.getDay() != 2 ];
+			} else {
+				return [ isWeekday ];
+			}
+		}
+	});
+
+	$( "button" ).button({
+		icons: {
+			primary: "ui-icon-calendar"
+		}
+	});
+
+	$( "#days" ).spinner({ min: 1 });
+
+	$( "form" ).on( "submit", function( event ) {
+		var date,
+			daysValid = $( "#days" ).spinner( "isValid" );
+		
+		try {
+			date = $.datepicker.parseDate( "mm/dd/yy",
+			  $( "#date" ).val() );
+		} catch ( error ) { }
+
+		if ( !date ) {
+			event.preventDefault();
+			alert( "Please provide a valid date." );
+		}
+		if ( date && $( "select" ).val() == "Smith" 
+		  && date.getDay() == 2 ) {
+			event.preventDefault();
+			alert( "Dr. Smith does not accept appointments on Tuesday." );
+		}
+		if ( !daysValid ) {
+			event.preventDefault();
+			alert( "Please provide a valid number of days." );
+		}
+	});
+</script>
+
+</body>
+</html>

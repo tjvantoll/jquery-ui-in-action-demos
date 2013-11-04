@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Datepicker that Disables Christmas</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+	<style>
+		.ui-datepicker .ui-christmas span {
+			color: red;
+			background: green;
+		}
+	</style>
+</head>
+<body>
+
+<label for="date">Date:</label>
+<input type="text" name="date" id="date">
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "input" ).datepicker({
+		beforeShowDay: function( date ) {
+			if ( date.getDate() == 25 && date.getMonth() == 11 ) {
+				return [ false, "ui-christmas", "Christmas!" ];
+			}
+			return [ true ];
+		}
+	});
+</script>
+
+</body>
+</html>

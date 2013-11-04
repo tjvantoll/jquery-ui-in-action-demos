@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Using destroy() to Reset the Widget's State</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="dialog">jQuery UI Rocks!</div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "#dialog" )
+		.dialog()
+		.dialog( "destroy" );
+</script>
+
+</body>
+</html>

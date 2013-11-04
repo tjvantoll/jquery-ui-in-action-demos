@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Button Controls</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+</head>
+<body>
+
+<button>button</button>
+<input type="button" value="button">
+<input type="reset" value="reset">
+<input type="submit" value="submit">
+
+<label for="checkbox">checkbox</label>
+<input type="checkbox" id="checkbox">
+<label for="radio">radio</label>
+<input type="radio" id="radio">
+
+<a>a</a>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "button, input, a" ).button();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Counting the Number of Dialogs Created</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+</head>
+<body>
+
+<button>Make Dialog</button>
+<p>Dialogs created: <span id="count">0</span></p>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	var dialogs = 0;
+	$( document ).on( "dialogcreate", function() {
+		dialogs++;
+		$( "#count" ).text( dialogs );
+	});
+	$( "button" ).on( "click", function() {
+		$( "<div>" ).dialog();
+	});
+</script>
+
+</body>
+</html>
