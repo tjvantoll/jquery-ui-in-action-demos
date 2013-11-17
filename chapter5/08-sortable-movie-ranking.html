@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>A Movie Ranking Poll</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		#movies {
+			list-style: none;
+			padding: 0;
+		}
+		#movies li {
+			margin: 0.5em 0;
+			padding-left: 0.5em;
+			border: 1px solid black;
+			height: 35px;
+			line-height: 35px;
+		}
+		#movies .movie-placeholder {
+			border: 1px dotted black;
+		}
+	</style>
+</head>
+<body>
+
+<p>Please rank these movies (best to worst):</p>
+<ol id="movies"></ol>
+<button>Submit</button>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	var movies = [ "Ghostbusters", "Titanic", "Top Gun",
+		"Aliens", "Predator" ].sort(function() {
+			return 0.5 - Math.random();
+		}),
+		i = 0,
+		list = $( "#movies" ).sortable({
+			placeholder: "movie-placeholder"
+		});
+
+	for ( ; i < movies.length; i++ ) {
+		list.append( "<li>" + movies[ i ] + "</li>" );
+	}
+
+	$( "button" ).button().on( "click", function() {
+		var movies = [];
+		$( "#movies li" ).each(function() {
+			movies.push( this.innerHTML );
+		});
+		alert( "Selection: " + movies );
+	});
+</script>
+
+</body>
+</html>

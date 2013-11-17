@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Drag & Drop Shopping Cart</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		#items { list-style: none; }
+		#items li {
+			margin: 0.5em;
+			padding: 0.5em;
+			border: 1px solid black;
+			border-radius: 5px;
+			width: 100px;
+			cursor: move;
+		}
+		#cart { 
+			position: fixed;
+			top: 0;
+			right: 0;
+			height: 55px;
+			width: 150px;
+			border: 2px solid black;
+			text-align: center;
+			padding-top: 20px;
+			line-height: 10px;
+			box-sizing: border-box;
+		}
+		#cart.active {
+			border: 2px dotted black;
+		}
+		#cart.hover {
+			border: 2px solid red;
+		}
+	</style>
+</head>
+<body>
+
+<ul id="items">
+	<li>Bananas</li>
+	<li>Apples</li>
+	<li>Grapes</li>
+	<li>Oranges</li>
+	<li>Watermelon</li>
+	<li>Strawberries</li>
+</ul>
+<div id="cart">
+	Cart - <span id="count">0</span> Item(s)
+</div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "#items li" ).draggable({
+		cursor: "move",
+		revert: "invalid",
+		helper: "clone"
+	});
+	$( "#cart" ).droppable({
+		activeClass: "active",
+		hoverClass: "hover",
+		drop: function( event, ui ) {
+			var count = parseInt( $( "#count" ).text(), 10 );
+			$( "#count" ).text( ++count );
+		},
+		tolerance: "touch"
+	});
+</script>
+
+</body>
+</html>

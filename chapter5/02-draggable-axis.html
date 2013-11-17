@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Draggable on X and Y Axis</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		#x, #y {
+			width: 100px;
+			height: 100px;
+		}
+		#x { background: red; }
+		#y { background: blue; }
+	</style>
+</head>
+<body>
+
+<div id="x"></div>
+<div id="y"></div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "#x" ).draggable({ axis: "x" });
+	$( "#y" ).draggable({ axis: "y" });
+</script>
+
+</body>
+</html>

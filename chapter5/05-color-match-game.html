@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Color Match Drag & Drop Game</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		#colors {
+			position: absolute;
+		}
+		.ui-draggable {
+			width: 100px;
+			height: 100px;
+			margin: 20px;
+			cursor: move;
+			border: 1px solid black;
+			box-sizing: border-box;
+		}
+		#drop-zones {
+			position: absolute;
+			left: 200px;
+		}
+		#drop-zones > div {
+			border: 1px solid black;
+			height: 100px;
+			width: 100px;
+			margin: 20px;
+			text-align: center;
+			padding-top: 40px;
+			box-sizing: border-box;
+			line-height: 10px;
+		}
+	</style>
+</head>
+<body>
+
+<div id="colors"></div>
+<div id="drop-zones"></div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	function randomize( array ) {
+		return array.sort(function() {
+			return 0.5 - Math.random();
+		});
+	};
+
+	var i = 0,
+		colors = randomize( [ "red", "blue", "green", "yellow" ] );
+
+	for ( ; i < colors.length; i++ ) {
+		$( "<div>", { id: colors[ i ] } )
+			.css( "background", colors[ i ] )
+			.appendTo( "#colors" )
+			.draggable({ revert: "invalid", zIndex: 2 });
+	}
+
+	randomize( colors );
+	for ( i = 0; i < colors.length; i++ ) {
+		$( "<div>", { text: colors[ i ] })
+			.appendTo( "#drop-zones" );
+	}
+
+	$( "#drop-zones > div" ).droppable({
+		accept: function( draggable ) {
+			return $( this ).text() == draggable.attr( "id" );
+		},
+		drop: function( event, ui ) {
+			var color = ui.draggable.css( "background-color" );
+			$( this ).css( "background", color ).addClass( "filled" );
+			ui.draggable.hide( "puff" );
+			
+			if ( $( ".filled" ).length === colors.length ) {
+				$( "<div><p>Nice job! Refreshing game.</p></div>")
+					.dialog({ modal: true });
+				setTimeout(function() {
+					window.location = window.location;
+				}, 3000);
+			}
+		}
+	});
+</script>
+
+</body>
+</html>

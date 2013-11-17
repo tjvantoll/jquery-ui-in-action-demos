@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>File System</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		.ui-selecting { background: hotpink; }
+		.ui-selected { background: red; color: white; }
+		ul {
+			list-style: none;
+			overflow: hidden;
+			padding: 0;
+		}
+		li {
+			width: 100px;
+			height: 100px;
+			text-align: center;
+			float: left;
+			margin: 0.5em;
+			border: 1px solid black;
+			line-height: 100px;
+		}
+	</style>
+</head>
+<body>
+
+<ul id="selectable">
+	<li>book.pdf</li>
+	<li>image.png</li>
+	<li>portrait.jpg</li>
+	<li>paint.bmp</li>
+	<li>words.doc</li>
+	<li>text.txt</li>
+</ul>
+
+<button id="add">Add File</button>
+<button id="remove">Remove Selected File(s)</button>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	var selectable = $( "#selectable" ).selectable();
+	$( "#add" ).button().on( "click", function() {
+		 selectable.append( "<li>new</li>" );
+	});
+	$( "#remove" ).button().on( "click", function() {
+		$( ".ui-selected" ).remove();
+	});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Resizable with a Custom Handle</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		#resizable {
+			width: 100px; 
+			height: 100px; 
+			border: 1px solid black;
+		}
+		.ui-resizable-e {
+			background-color: skyblue;
+			width: 18px;
+			right: 0;
+		}
+	</style>
+</head>
+<body>
+
+<div id="resizable">
+	<div class="ui-resizable-handle ui-resizable-e">
+		<span class="ui-icon  ui-icon-triangle-1-e"></span>
+		<span class="ui-icon  ui-icon-triangle-1-e"></span>
+		<span class="ui-icon  ui-icon-triangle-1-e"></span>
+		<span class="ui-icon  ui-icon-triangle-1-e"></span>
+		<span class="ui-icon  ui-icon-triangle-1-e"></span>
+		<span class="ui-icon  ui-icon-triangle-1-e"></span>
+	</div>
+</div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "#resizable" ).resizable({
+		handles: {
+			e: ".ui-resizable-e"
+		},
+		minWidth: 50
+	});
+</script>
+
+</body>
+</html>

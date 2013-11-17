@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Basic Droppable</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		#draggable {
+			width: 100px; 
+			height: 100px; 
+			border: 1px solid black;
+		}
+		#droppable { 
+			width: 200px; 
+			height: 200px;
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+
+<div id="draggable"></div>
+<div id="droppable"></div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "#draggable" ).draggable();
+	$( "#droppable" ).droppable({
+		drop: function() {
+			$( this ).css( "background", "red" );
+		}
+	});
+</script>
+
+</body>
+</html>
