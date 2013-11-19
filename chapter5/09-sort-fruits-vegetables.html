@@ -11,12 +11,17 @@
 			float: left;
 			margin: 0 10px;
 		}
-		#fruits, #vegetables { padding-left: 0.5em; }
+		#fruits, #vegetables {
+			padding-left: 0.5em;
+			min-height: 20px;
+		}
+		#fruits li:hover, #vegetables li:hover {
+			cursor: move;
+		}
 		#fruits-container h3, #vegetables-container h3 {
 			text-decoration: underline;
 			margin: 0;
 		}
-		#fruits, #vegetables { min-height: 20px; }
 		.sortable-placeholder {
 			border: 2px dotted black;
 			height: 18px;
