@@ -90,7 +90,6 @@
 		source: "search.php"
 	});
 
-	$.datepicker.setDefaults( $.datepicker.regional[ "" ] );
 	$( "#date" ).datepicker({
 		beforeShowDay: function( date ) {
 			var isWeekday = date.getDay() > 0 && date.getDay() < 6;
@@ -100,7 +99,7 @@
 				return [ isWeekday ];
 			}
 		}
-	});
+	}).datepicker( "option", $.datepicker.regional[ "" ] );
 
 	$( "button" ).button({
 		icons: {
