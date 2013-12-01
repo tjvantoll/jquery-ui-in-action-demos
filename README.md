@@ -1,0 +1,1 @@
+Code examples for my upcoming [jQuery UI in Action](http://manning.com/vantoll/) book by [Manning](http://manning.com). Please provide any feedback on the [book's author forums](http://www.manning-sandbox.com/forum.jspa?forumID=889).
