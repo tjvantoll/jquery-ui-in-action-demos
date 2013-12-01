@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Portlets</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		.portlet {
+			width: 600px;
+			position: absolute;
+		}
+		.portlet p { margin: 0; }
+		.portlet-header {
+			position: relative;
+			padding: 0.5em;
+			z-index: 1;
+		}
+		.portlet-header .ui-button {
+			position: absolute;
+			right: 10px;
+			height: 20px;
+			width: 20px;
+			background: none;
+			border: none;
+		}
+		.portlet-content { padding: 0.5em; }
+		#ui { top: 225px; }
+		#mobile { top: 425px; }
+	</style>
+</head>
+<body>
+
+<div class="portlet ui-widget ui-widget-content ui-corner-all" id="core">
+	<div class="portlet-header ui-widget-header">
+		<button>minimize</button>
+		jQuery
+	</div>
+	<div class="portlet-content">
+		<p>jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.</p>
+	</div>
+</div>
+
+<div class="portlet ui-widget ui-widget-content ui-corner-all" id="ui">
+	<div class="portlet-header ui-widget-header">
+		<button>minimize</button>
+		jQuery UI
+	</div>
+	<div class="portlet-content">
+		<p>jQuery UI is a curated set of user interface interactions, effects, widgets, and themes built on top of the jQuery JavaScript Library. Whether you're building highly interactive web applications or you just need to add a date picker to a form control, jQuery UI is the perfect choice.</p>
+	</div>
+</div>
+
+<div class="portlet ui-widget ui-widget-content ui-corner-all" id="mobile">
+	<div class="portlet-header ui-widget-header">
+		<button>minimize</button>
+		jQuery Mobile
+	</div>
+	<div class="portlet-content">
+		<p>A unified, HTML5-based user interface system for all popular mobile device platforms, built on the rock-solid jQuery and jQuery UI foundation. Its lightweight code is built with progressive enhancement, and has a flexible, easily themeable design.</p>
+	</div>
+</div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( ".portlet" )
+		.draggable({ handle: ".ui-widget-header", stack: ".portlet" })
+		.each(function() {
+			$( this ).find( "button" )
+				.button({
+					icons: { primary: "ui-icon-minusthick" },
+					text: false
+				})
+				.on( "click", function() {
+					var maximized = $( this ).button( "option", "icons" ).primary
+						=== "ui-icon-minusthick";
+					$( this )
+						.button( "option", {
+							label: maximized ? "maximize" : "minimize",
+							icons: { primary: maximized ? "ui-icon-plusthick": "ui-icon-minusthick" }
+						})
+						.parents( ".portlet" )
+						.find( ".portlet-content" ).toggle( "blind", 200 );
+				});
+		});
+</script>
+
+</body>
+</html>

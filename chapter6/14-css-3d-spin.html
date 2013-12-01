@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>CSS3 Animations - 3D Infinite Spin</title>
+
+	<style>
+		@-webkit-keyframes spin-3d {
+			from { -webkit-transform: rotateX( 0deg ); }
+			to { -webkit-transform: rotateX( 360deg ); }
+		}
+		@keyframes spin-3d {
+			from { transform: rotateX( 0deg ); }
+			to { transform: rotateX( 360deg ); }
+		}
+		div {
+			height: 500px;
+			width: 500px;
+			background: red;
+			position: absolute;
+			-webkit-animation: spin-3d 10s linear infinite; 
+			animation: spin-3d 10s linear infinite; 
+		}
+	</style>
+</head>
+<body>
+
+<div></div>
+
+</body>
+</html>

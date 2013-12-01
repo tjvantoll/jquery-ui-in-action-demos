@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Animating Colors with jQuery UI</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		div {
+			border: 10px solid black;
+			outline: 10px solid black;
+		}
+		div.rainbow {
+			background: #FF0000;
+			border-color: yellow;
+			color: rgb(0, 0, 255);
+			outline-color: green;
+		}
+	</style>
+</head>
+<body>
+
+<div>jQuery UI Rocks!</div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "div" ).addClass( "rainbow", 2000 );
+</script>
+
+</body>
+</html>

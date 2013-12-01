@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Big Explosion</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+</head>
+<body>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "<div>" )
+		.appendTo( "body" )
+		.css({ height: 500, width: 500, background: "red" })
+		.effect( "explode", { pieces: 50, duration: 10000 });
+</script>
+
+</body>
+</html>

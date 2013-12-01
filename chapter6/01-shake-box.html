@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Shaking a Box with the Shake Effect</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		div {
+			height: 100px;
+			width: 100px;
+			background: blue;
+		}
+	</style>
+</head>
+<body>
+
+<div id="box"></div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	var box = $( "div" ).effect( "shake", {
+		times: 10,
+		distance: 100
+	}, 3000, function() {
+		box.css( "background", "red" );
+	});
+</script>
+
+</body>
+</html>

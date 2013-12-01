@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Animating Multiple Class Names</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		.red { color: red; }
+		.big { font-size: 5em; }
+		.spaced { padding: 1em; }
+	</style>
+</head>
+<body>
+
+<p>jQuery UI Rocks!</p>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "p" ).addClass( "red big spaced", 3000 );
+</script>
+
+</body>
+</html>

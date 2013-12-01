@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>CSS Animation Comparison</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		@-webkit-keyframes shake {
+			0% { left: 0; }
+			12.5% { left: -20px; }
+			25% { left: 0; }
+			37.5% { left: 20px; }
+			50% { left: 0; }
+			62.5% { left: -20px; }
+			75% { left: 0; }
+			87.5% { left: 20px; }
+			100% { left: 0; }
+		}
+		@keyframes shake {
+			0% { left: 0; }
+			12.5% { left: -20px; }
+			25% { left: 0; }
+			37.5% { left: 20px; }
+			50% { left: 0; }
+			62.5% { left: -20px; }
+			75% { left: 0; }
+			87.5% { left: 20px; }
+			100% { left: 0; }
+		}
+
+		#css {
+			position: absolute;
+			-webkit-animation: shake 1s linear;
+			animation: shake 1s linear;
+		}
+	</style>
+</head>
+<body>
+
+<p id="ui">jQuery UI</p>
+<p id="css">CSS3</p>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "#ui" ).effect( "shake", {
+		times: 2,
+		duration: 1000,
+		easing: "linear",
+		complete: function() {
+			console.log( "ui shake complete" );
+		}
+	});
+	$( "#css" ).on( "webkitAnimationEnd animationend", function() {
+		console.log( "css shake complete" ); 
+	});
+</script>
+
+</body>
+</html>

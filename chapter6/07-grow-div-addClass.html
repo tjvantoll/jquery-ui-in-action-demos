@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Grow div using addClass()</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		div {
+			height: 50px;
+			width: 50px;
+			background: red;
+		}
+		div.big {
+			height: 100px;
+			width: 100px;
+		}
+	</style>
+</head>
+<body>
+
+<div></div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "div" ).addClass( "big", 1000 );
+</script>
+
+</body>
+</html>

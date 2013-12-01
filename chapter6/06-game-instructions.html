@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Game Instructions in Dialog</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		#fruits-container, #vegetables-container {
+			width: 100px;
+			float: left;
+			margin: 0 10px;
+		}
+		#fruits, #vegetables {
+			padding-left: 0.5em;
+			min-height: 20px;
+		}
+		#fruits-container h3, #vegetables-container h3 {
+			text-decoration: underline;
+			margin: 0;
+		}
+		.sortable-placeholder {
+			border: 2px dotted black;
+			height: 18px;
+		}
+	</style>
+</head>
+<body>
+
+<p>The fruit and vegetables are not sorted correctly - re-arrange them!</p>
+
+<div id="game">
+	<div id="fruits-container">
+		<h3>Fruits</h3>
+		<ul id="fruits"></ul>
+	</div>
+	<div id="vegetables-container">
+		<h3>Vegetables</h3>
+		<ul id="vegetables"></ul>
+	</div>
+</div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	if ( !sessionStorage.getItem( "messageViewed" ) ) {
+		$( "p" ).dialog({
+			show: {
+				effect: "scale",
+				easing: "easeOutElastic",
+				duration: 500
+			},
+			hide: {
+				effect: "scale",
+				duration: 100
+			},
+			modal: true,
+			title: "Fruit & Vegetable Sorter",
+			width: 400,
+			buttons: {
+				"OK": function() {
+					$( this ).dialog( "close" );
+				}
+			},
+			close: function() {
+				sessionStorage.setItem( "messageViewed", true );
+			}
+		});
+	}
+
+	var fruits = [ "Avocado", "Banana", "Apple", "Cherry", "Fig", "Grape", "Kiwi", "Lemon", "Olives", "Orange", "Pumpkin", "Tomato" ],
+		vegetables = [ "Broccoli", "Carrot", "Celery", "Corn", "Garlic", "Green Bean", "Kale", "Lettuce", "Onion", "Pea", "Spinach", "Turnip" ];
+
+	$.each( fruits.concat( vegetables ), function( index, item ) {
+		var type = fruits.indexOf( item ) >= 0 ? "fruit" : "vegetable";
+		
+		if ( Math.random() < 0.6 ) {
+			$( "<li data-type=" + type + ">" + item + "</li>" )
+				.appendTo( Math.random() >= 0.5 ? "#fruits" : "#vegetables" );
+		}
+	});
+
+	$( "#fruits, #vegetables" ).sortable({
+		connectWith: "#fruits, #vegetables",
+		cursor: "move",
+		helper: function( event, item ) {
+			return $( "<div>", { text: item.text() } );
+		},
+		placeholder: "sortable-placeholder",
+		stop: function() {
+			if ( isValid() ) {
+				$( "<div>" ).append( "<p>Correct! Refreshing game.</p>" )
+					.dialog();
+				setTimeout(function() {
+					window.location = window.location; 
+				}, 3000);
+			}
+		}
+	});
+
+	function isValid() {
+		var valid = true;
+		$( "#fruits li, #vegetables li" ).each(function() {
+			var item = $( this ),
+				actual = item.parent()[ 0 ].id == "fruits" ? "fruit" : "vegetable",
+				correct = item.attr( "data-type" );
+
+			if ( actual != correct ) {
+				valid = false;
+			}
+		});
+		return valid;
+	};
+</script>
+
+</body>
+</html>

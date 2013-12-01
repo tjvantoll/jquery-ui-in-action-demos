@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Making a Box Explode</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		div {
+			height: 100px;
+			width: 100px;
+			background: green;
+		}
+	</style>
+</head>
+<body>
+
+<div id="box"></div>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "div" ).effect({
+		effect: "explode",
+		easing: "easeInExpo",
+		pieces: 4,
+		duration: 5000
+	});
+</script>
+
+</body>
+</html>
