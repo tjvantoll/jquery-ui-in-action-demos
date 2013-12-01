@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Autocomplete of jQuery GitHub Repository Names</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+</head>
+<body>
+
+<input id="autocomplete">
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "#autocomplete" ).autocomplete({
+		source: function( request, response ) {
+			$.getJSON( "https://api.github.com/orgs/jquery/repos" )
+				.then( function( data ) {
+					var results = [],
+						term = $.ui.autocomplete.escapeRegex( request.term ),
+						matcher = new RegExp( term, "i" ),
+						i = 0;
+					$.grep( data, function( repo ) {
+						if ( matcher.test( repo.name ) ) {
+							results.push( repo.name );
+						}
+					});
+					response( results );
+				});
+		}
+	});
+</script>
+
+</body>
+</html>
