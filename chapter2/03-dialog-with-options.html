@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Dialog with title and buttons Options Set</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+</head>
+<body>
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "<div>Your files have been successfully uploaded.</div>" ).dialog({
+		buttons: {
+			OK: function() {}
+		},
+		title: "Success"
+	});
+</script>
+
+</body>
+</html>

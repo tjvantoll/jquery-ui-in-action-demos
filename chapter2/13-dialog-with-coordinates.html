@@ -2,24 +2,19 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Preveting a Dialog from Closing with preventDefault()</title>
+	<title>Dialog with Coordinates in Title Bar</title>
 	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
 </head>
 <body>
-
-<div id="dialog">
-	<input type="checkbox">
-</div>
 
 <script src="http://code.jquery.com/jquery-git.js"></script>
 <script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
 
 <script>
-	$( "#dialog" ).dialog({
-		beforeClose: function( event, ui ) {
-			if ( !$( this ).find( "[type=checkbox]" ).prop( "checked" ) ) {
-				event.preventDefault();
-			}
+	$( "<div>" ).dialog({
+		drag: function( event, ui ) {
+			$( this ).dialog( "option", "title",
+				ui.offset.top + " x " + ui.offset.left );
 		}
 	});
 </script>

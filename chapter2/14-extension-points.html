@@ -2,18 +2,22 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Dialog with Title</title>
+	<title>Extension Points</title>
 	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
 </head>
 <body>
-
-<div id="dialog">jQuery UI Rocks!</div>
 
 <script src="http://code.jquery.com/jquery-git.js"></script>
 <script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
 
 <script>
-	$( "#dialog" ).dialog({ title: "jQuery UI Dialog" });
+	$.widget( "ui.dialog", $.ui.dialog, {
+		_title: function( title ) {
+			title.text( "Prefix: " + this.options.title );
+		}
+	});
+
+	$( "<div>" ).dialog({ title: "Hello World" });
 </script>
 
 </body>

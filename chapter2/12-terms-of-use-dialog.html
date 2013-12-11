@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Building a Terms of Use Dialog</title>
+	<link href="http://code.jquery.com/ui/jquery-ui-git.css" rel="stylesheet">
+
+	<style>
+		.invalid { color: red; }
+		textarea {
+			display: inline-block;
+			width: 100%;
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+
+<div id="dialog">
+	<p>You must accept the site's terms of use before continuing.</p>
+	<textarea>I agree to allow this site to gather all my data and do whatever with it that they so choose. This includes but is not limited to: phone numbers, email addresses, social security numbers, and pet names.</textarea>
+	<div>
+		<label for="terms">I accept the terms</label>
+		<input type="checkbox" id="terms">
+	</div>
+</div>
+
+
+<script src="http://code.jquery.com/jquery-git.js"></script>
+<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+<script>
+	$( "#dialog" ).dialog({
+		buttons: {
+			OK: function() {
+				$( this ).dialog( "close" );
+			}
+		},
+		beforeClose: function( event, ui ) {
+			if ( !$( "#terms" ).prop( "checked" ) ) {
+				event.preventDefault();
+				$( "[for=terms]" ).addClass( "invalid" );
+			}
+		},
+		width: 600
+	});
+</script>
+
+</body>
+</html>
