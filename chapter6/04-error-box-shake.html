@@ -93,17 +93,19 @@
 		source: "search.php"
 	});
 
+	function checkDate( date ) {
+		var isWeekday = date.getDay() > 0 && date.getDay() < 6;
+		if ( $( "#doctor" ).val() === "Smith" ) {
+			return [ isWeekday && date.getDay() != 2 ];
+		} else {
+			return [ isWeekday ];
+		}
+	};
+
 	$.datepicker.setDefaults( $.datepicker.regional[ "" ] );
 	$( "#date" ).datepicker({
-		beforeShowDay: function( date ) {
-			var isWeekday = date.getDay() > 0 && date.getDay() < 6;
-			if ( $( "#doctor" ).val() === "Smith" ) {
-				return [ isWeekday && date.getDay() != 2 ];
-			} else {
-				return [ isWeekday ];
-			}
-		}
-	});
+		beforeShowDay: checkDate
+	}).datepicker( "option", $.datepicker.regional[ "" ] );
 
 	$( "#submit" ).button({
 		icons: {
@@ -125,8 +127,8 @@
 		if ( !date ) {
 			errors.push( "Please provide a valid date." );
 		}
-		if ( date && $( "select" ).val() == "Smith" && date.getDay() == 2 ) {
-			errors.push( "Dr. Smith does not accept appointments on Tuesday." );
+		if ( date && !checkDate( date )[ 0 ] ) {
+			errors.push( "You cannot select a weekend or Tuesday for Doctor Smith." );
 		}
 		if ( !daysValid ) {
 			errors.push( "Please provide a valid number of days." );
