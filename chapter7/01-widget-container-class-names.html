@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Widget Container Class Names</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+
+	<style>
+		.ui-widget {
+			font-size: 1.2em;
+			font-family: Tahoma;
+		}
+		.ui-widget-header {
+			border: 5px solid blue;
+			background: red;
+			color: white;
+		}
+		.ui-widget-content {
+			border: 2px solid green;
+			background: purple;
+			color: gray;
+		}
+	</style>
+</head>
+<body>
+
+<div id="accordion">
+	<h3>One</h3>
+	<div>One - Contents</div>
+	<h3>Two</h3>
+	<div>Two - Contents</div>
+	<h3>Three</h3>
+	<div>Three - Contents</div>
+</div>
+
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">One</a></li>
+		<li><a href="#tabs-2">Two</a></li>
+		<li><a href="#tabs-3">Three</a></li>
+	</ul>
+	<div id="tabs-1">
+		One Contents
+	</div>
+	<div id="tabs-2">
+		Two Contents
+	</div>
+	<div id="tabs-3">
+		Three Contents
+	</div>
+</div>
+
+<div id="datepicker"></div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$( "#accordion" ).accordion();
+	$( "#tabs" ).tabs();
+	$( "<div>" ).dialog();
+	$( "#datepicker" ).datepicker();
+</script>
+
+</body>
+</html>

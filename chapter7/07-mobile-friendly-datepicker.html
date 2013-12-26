@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>A Mobile Friendly Datepicker</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+
+	<style>
+		body { margin: 0; }
+
+		@media (max-width: 600px) {
+			.ui-datepicker { width: 100%; }
+			.ui-datepicker-calendar td a {
+				text-align: center;
+				padding: 0.5em;
+			}
+		}
+	</style>
+</head>
+<body>
+
+<div id="datepicker"></div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$( "#datepicker" ).datepicker();
+</script>
+
+</body>
+</html>

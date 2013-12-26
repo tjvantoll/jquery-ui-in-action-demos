@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Accordion with a Disabled and Erred Panel</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+
+	<style>
+		.ui-state-error .ui-icon {
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+
+<h2>Account Settings</h2>
+
+<div id="accordion">
+	<h3 class="ui-state-error">
+		<span class="ui-icon ui-icon-alert">
+			This section has an error
+		</span>
+		Profile
+	</h3>
+	<div>
+		<label for="name">Name:</label>
+		<input id="name">
+	</div>
+
+	<h3 class="ui-state-disabled">Admin</h3>
+	<div>Admin - Contents</div>
+</div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$( "#accordion" )
+		.accordion()
+		.tooltip({
+			items: ".ui-state-disabled",
+			content: "To use this feature you must upgrade your account."
+		});
+</script>
+
+</body>
+</html>

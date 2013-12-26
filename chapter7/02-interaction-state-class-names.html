@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Interaction State Class Names</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+
+	<style>
+		.ui-state-default { color: blue; }
+		.ui-state-hover { color: orange; }
+		.ui-state-focus { color: green; }
+		.ui-state-active { color: red; }
+	</style>
+</head>
+<body>
+
+<div id="buttonset">
+	<label for="one">one</label>
+	<input name="numbers" type="radio" id="one">
+
+	<label for="two">two</label>
+	<input name="numbers" type="radio" id="two">
+</div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$( "#buttonset" ).buttonset();
+</script>
+
+</body>
+</html>

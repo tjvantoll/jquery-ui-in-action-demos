@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Using Dialog's Widget Specific Class Names</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+
+	<style>
+		.ui-dialog {
+			border: 15px solid green;
+		}
+		.ui-dialog-title {
+			font-size: 2em;
+		}
+		.ui-dialog-content {
+			text-transform: uppercase;
+		}
+		.ui-dialog-titlebar {
+			border: 5px dotted black;
+		}
+	</style>
+</head>
+<body>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$( "<div>CONTENT</div>" ).dialog({ title: "Title" });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>A Styled Confirmation Dialog</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+
+	<style>
+		.ui-dialog .ui-state-highlight { padding: 0.5em; }
+		.ui-dialog .ui-icon-info { display: inline-block; }
+		.ui-widget-content .ui-priority-primary {
+			color: white;
+			background: green;
+		}
+	</style>
+</head>
+<body>
+
+<div id="dialog">
+	<p class="ui-state-highlight">
+		<span class="ui-icon ui-icon-info"></span>
+		Bank transfers take two days to process.
+	</p>
+	<p>Please confirm you would like to transfer $1,000,000 to TJ VanToll.</p>
+</div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$( "#dialog" ).dialog({
+		buttons: [
+			{
+				text: "OK",
+				"class": "ui-priority-primary",
+				click: function() {
+					// Process transaction
+					$( this ).dialog( "close" );
+				}
+			},
+			{
+				text: "Close",
+				"class": "ui-priority-secondary",
+				click: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		],
+		title: "Confirm Money Transfer",
+		width: 500
+	});
+</script>
+
+</body>
+</html>
