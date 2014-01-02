@@ -24,8 +24,11 @@
 		Profile
 	</h3>
 	<div>
-		<label for="name">Name:</label>
-		<input id="name">
+		<form>
+			<label for="password" class="ui-state-error-text">Password:</label>
+			<input id="password" required title="Your password has expired, please choose a new one">
+			<button>Update</button>
+		</form>
 	</div>
 
 	<h3 class="ui-state-disabled">Admin</h3>
@@ -42,6 +45,8 @@
 			items: ".ui-state-disabled",
 			content: "To use this feature you must upgrade your account."
 		});
+
+	$( "#password" ).tooltip();
 </script>
 
 </body>
