@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Random Number Plugin</title>
+</head>
+<body>
+
+<script src="../js/jquery.js"></script>
+
+<script>
+	$.fn.randomNumber = function( maxValue ) {
+		function RandomNumber( element, maxValue ) {
+			this.element = element;
+			this.maxValue = maxValue;
+			this.update();
+		};
+		
+		RandomNumber.prototype.update = function() {
+			this.element.html( Math.random() * this.maxValue );
+		};
+
+		RandomNumber.prototype.max = function( maxValue ) {
+			if ( typeof maxValue === "undefined" ) {
+				return this.maxValue;
+			}
+			this.maxValue = maxValue;
+			this.update();
+		};
+
+		return this.each( function( index, element ) {
+			$( element )
+				.data( "randomNumber",
+					new RandomNumber( $( element ), maxValue ) );
+		});
+	};
+
+	var div = $( "<div>" ).appendTo( "body" ).randomNumber( 100 ),
+		instance = div.data( "randomNumber" );
+
+	instance.max( 10000 );
+	console.log( instance.max() );
+</script>
+
+</body>
+</html>

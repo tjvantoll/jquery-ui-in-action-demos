@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Adding Items to List</title>
+
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+	<link href="todo.css" rel="stylesheet">
+</head>
+<body>
+
+<ul>
+	<li>Clean dishes</li>
+	<li>Walk dog</li>
+	<li>Mop floor</li>
+</ul>
+<form>
+	<label>Add Item:<input required></label>
+	<button>Add</button>
+</form>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="todo.js"></script>
+
+<script>
+	var todo = $( "ul" ).todo();
+	$( "form" ).on( "submit", function( event ) {
+		event.preventDefault();
+		var input = $( this ).find( "input" );
+		todo.todo( "add", input.val() );
+		input.val( "" );
+	});
+</script>
+
+</body>
+</html>

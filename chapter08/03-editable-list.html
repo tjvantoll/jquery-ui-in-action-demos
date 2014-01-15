@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Making an Editable List</title>
+
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+	<link href="todo.css" rel="stylesheet">
+	<style>
+		#update { display: none; }
+	</style>
+</head>
+<body>
+
+<ul id="todo">
+	<li>Clean dishes</li>
+	<li>Walk dog</li>
+	<li>Mop floor</li>
+</ul>
+<button id="edit">Edit</button>
+<button id="update">Update</button>
+
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="todo.js"></script>
+
+<script>
+	var list = $( "#todo" ),
+		editButton = $( "#edit" ).button(),
+		updateButton = $( "#update" ).button();
+		
+	editButton.on( "click", function() {
+		list.todo();
+		editButton.hide();
+		updateButton.show();
+	});
+	updateButton.on( "click", function() {
+		list.todo( "destroy" );
+		editButton.show();
+		updateButton.hide();
+	});
+</script>
+
+</body>
+</html>
