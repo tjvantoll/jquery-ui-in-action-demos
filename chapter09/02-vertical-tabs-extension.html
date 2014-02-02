@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vertical Tabs Extension</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+
+	<style>
+		.ui-tabs-vertical {
+			padding: 0;
+			overflow: hidden;
+		}
+		.ui-tabs-vertical .ui-widget-header { border: none; }
+		.ui-tabs-vertical .ui-tabs-nav {
+			float: left;
+			width: 10em;
+			background: #CCC;
+			border-radius: 4px 0 0 4px;
+			border-right: 1px solid gray;
+		}
+		.ui-tabs-vertical .ui-tabs-nav li {
+			width: 100%;
+			margin: 0.2em 0;
+			border: 1px solid gray;
+			border-width: 1px 0 1px 1px;
+			border-radius: 4px 0 0 4px;
+			overflow: hidden;
+			position: relative;
+			right: -2px;
+		}
+		.ui-tabs-vertical .ui-tabs-nav li a {
+			display: block;
+			width: 100%;
+			padding: 0.6em 1em;
+		}
+		.ui-tabs-vertical .ui-tabs-nav li a:hover {
+			cursor: pointer;
+		}
+		.ui-tabs-vertical .ui-tabs-nav li.ui-state-active {
+			margin-bottom: 0.2em;
+			padding-bottom: 0;
+			border-right: 1px solid white;
+		}
+		.ui-tabs-vertical .ui-tabs-nav li:last-child {
+			margin-bottom: 10px;
+		}
+		.ui-tabs-vertical .ui-tabs-panel {
+			float: left;
+			width: -webkit-calc(100% - 11em);
+			width: calc(100% - 11em);
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+<body>
+
+<div id="tabs">
+	<ul>
+		<li><a href="#one">One</a></li>
+		<li><a href="#two">Two</a></li>
+		<li><a href="#three">Three</a></li>
+	</ul>
+	<div id="one">One Contents</div>
+	<div id="two">Two Contents</div>
+	<div id="three">Three Contents</div>
+</div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$.widget( "ui.tabs", $.ui.tabs, {
+		options: {
+			orientation: "horizontal"
+		},
+		_create: function() {
+			this._super();
+			this._handleOrientation();
+		},
+		_handleOrientation: function() {
+			if ( this.options.orientation === "vertical" ) {
+				this.element.addClass( "ui-tabs-vertical" );
+			}
+		},
+		_setOption: function( key, value ) {
+			this._superApply( arguments );
+			if ( key === "orientation" ) {
+				this.element.removeClass( "ui-tabs-vertical" );
+				this._handleOrientation();
+			}
+		},
+		_destroy: function() {
+			this._super();
+			this.element.removeClass( "ui-tabs-vertical" );
+		}
+	});
+
+	$( "#tabs" ).tabs({ orientation: "vertical" });
+</script>
+
+</body>
+</html>

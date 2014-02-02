@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Todo List With Remove Functionality - With Added Extension Points</title>
+
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+	<link href="../chapter08/todo.css" rel="stylesheet">
+	<style>
+		.todo .todo-item {
+			position: relative;
+		}
+		.todo .todo-item button {
+			position: absolute;
+			right: 5px;
+			top: 0;
+		}
+	</style>
+</head>
+<body>
+
+<ul>
+	<li>Write widget</li>
+	<li>Post on GitHub</li>
+	<li>Profit?</li>
+</ul>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="../chapter08/todo.js"></script>
+
+<script>
+	$.widget( "tj.todo", $.tj.todo, {
+		_create: function() {
+			this._super();
+			this._on({
+				"click button": function( event ) {
+					var value = $( event.target ).parents( "li:first" )
+						.find( "input" ).val();
+					this.remove( value );
+				}
+			});
+		},
+		_renderList: function() {
+			var listItems = this.element.find( "li" ),
+				that = this;
+			listItems.find( "button" ).remove();
+			this._super();
+			listItems.each(function() {
+				var button = that._buildRemoveButton();
+				$( this ).append( button );
+			})
+		},
+		_buildRemoveButton: function() {
+			return $( "<button>Remove</button>" ).button({
+				icons: { primary: "ui-icon-closethick" },
+				text: false
+			});
+		},
+		_destroy: function() {
+			this.element.find( "button" ).remove();
+			this._super();
+		}
+	});
+
+	$.widget( "tj.todo", $.tj.todo, {
+		_buildRemoveButton: function() {
+			return $( "<button>Remove</button>" ).button({
+				icons: { primary: "ui-icon-closethick" }
+			});
+		}
+	});
+
+	$( "ul" ).todo();
+</script>
+
+</body>
+</html>

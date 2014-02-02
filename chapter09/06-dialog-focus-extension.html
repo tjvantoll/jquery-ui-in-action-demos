@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dialog Focus Extension</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="dialog">
+	<p>The transaction processed successfully. For details, see <a href="/account">your account</a>.</p>
+</div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$.widget( "ui.dialog", $.ui.dialog, {
+		_focusTabbable: function() {
+			var okButton = this.uiDialog.find( "button:contains('OK')" );
+			if ( okButton.length > 0 ) {
+				okButton.focus();
+			} else {
+				this._super();
+			}   
+		}
+	});
+
+	$( "#dialog" ).dialog({
+		buttons: {
+			OK: function() {
+				$( this ).dialog( "close" );
+			}
+		}
+	});
+</script>
+
+</body>
+</html>

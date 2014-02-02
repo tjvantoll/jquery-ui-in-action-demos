@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Todo List With Sortable Functionality</title>
+
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+	<link href="../chapter08/todo.css" rel="stylesheet">
+	<style>
+		.todo .ui-sortable-placeholder {
+			padding: 0.5em;
+		}
+		.todo .ui-sortable-helper {
+			list-style: none;
+		}
+	</style>
+</head>
+<body>
+
+<ul>
+	<li>Write widget</li>
+	<li>Post on GitHub</li>
+	<li>Profit?</li>
+</ul>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="../chapter08/todo.js"></script>
+
+<script>
+	$.widget( "tj.todo", $.tj.todo, {
+		options: {
+			sortable: false
+		},
+		_create: function() {
+			this._super();
+			if ( this.options.sortable ) {
+				this.element.sortable();
+			}
+		},
+		_setOption: function( key, value ) {
+			this._super( key, value );
+			if ( key === "sortable" ) {
+				if ( value ) {
+					this.element.sortable();
+				}
+				if ( !value && this._isSortable() ) {
+					this.element.sortable( "destroy" );
+				}
+			}
+		},
+		_isSortable: function() {
+			return this.element.is( ":data(ui-sortable)" );
+		},
+		_destroy: function() {
+			if ( this._isSortable() ) {
+				this.element.sortable( "destroy" );
+			}
+			this._super();
+		}
+	});
+
+	$( "ul" ).todo({ sortable: true });
+</script>
+
+</body>
+</html>

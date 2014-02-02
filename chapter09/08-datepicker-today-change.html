@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Changing the Datepicker's Today Button Functionality</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+</head>
+<body>
+
+<input id="datepicker">
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$.datepicker._gotoToday = (function( orig ) {
+		return function( id ) {
+			orig.call( this, id );
+			this._selectDate( id );
+		};
+	})( $.datepicker._gotoToday );
+
+	$( "#datepicker" ).datepicker({
+		showButtonPanel: true
+	});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mobile Datepicker Extension</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+
+	<style>
+		label {
+			display: inline-block;
+			margin-right: 5px;
+		}
+		input {
+			width: 60%;
+		}
+		label, input, button {
+			line-height: 30px;
+		}
+
+		.ui-datepicker { width: 100%; }
+		.ui-datepicker-calendar td a,
+		.ui-datepicker-calendar td.ui-state-disabled span {
+			text-align: center;
+			padding: 0.5em;
+		}
+		.ui-datepicker-trigger { margin-left: 0.2em; }
+	</style>
+</head>
+<body>
+
+<label for="date">Date:</label>
+<input id="date" placeholder="mm/dd/yyyy"></div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$.datepicker._findPos = (function( orig ) {
+		return function( obj ) {
+			var position = orig.call( this, obj );
+			position[ 0 ] = 0;
+			return position;
+		};
+	})( $.datepicker._findPos );
+	$.datepicker._attachments = (function( orig ) {
+		return function( input, inst ) {
+			orig.call( this, input, inst );
+			input.next( "button" ).button({
+				icons: { primary: "ui-icon-calendar" },
+				text: false
+			});
+
+		};
+	})( $.datepicker._attachments );
+
+	$( "input" ).datepicker({
+		showOn: "button",
+		beforeShowDay: $.datepicker.noWeekends
+	});
+</script>
+
+</body>
+</html>
