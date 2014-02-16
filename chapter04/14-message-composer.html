@@ -116,7 +116,7 @@
 	$( "#menu li:first" ).tooltip({
 		content: function() {
 			var message = localStorage.getItem( "message" );
-			if ( message.length > 20 ) {
+			if ( message && message.length > 20 ) {
 				return message.substring( 0, 20 ) + "...";
 			} else {
 				return message;
