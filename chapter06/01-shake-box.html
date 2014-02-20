@@ -22,11 +22,11 @@
 <script src="../js/jquery-ui.js"></script>
 
 <script>
-	var box = $( "div" ).effect( "shake", {
+	$( "div" ).effect( "shake", {
 		times: 10,
 		distance: 100
 	}, 3000, function() {
-		box.css( "background", "red" );
+		$( this ).css( "background", "red" );
 	});
 </script>
 
