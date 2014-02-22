@@ -1,0 +1,114 @@
+@import "jquery-ui/all.css";
+
+body {
+	font-family: Verdanda;
+	margin: 10px;
+}
+* {
+	box-sizing: border-box;
+}
+form {
+	float: left;
+	min-width: 300px;
+	width: 30%;
+}
+fieldset {
+	padding: 0 1em 1em 1em;
+}
+legend {
+	font-weight: bold;
+	font-size: 1.1em;
+}
+fieldset > div > label {
+	font-weight: bold;
+	display: block;
+	margin: 0.7em 0 0.3em 0;
+}
+input {
+	padding: 0.5em;
+	font-size: 1em;
+	width: 100%;
+}
+.ui-spinner {
+	width: 100%;
+	padding: 0.2em;
+}
+select {
+	width: 200px;
+}
+#lookup {
+	background: green;
+	color: white;
+	width: 100%;
+	margin-top: 1em;
+}
+
+.ui-progressbar-value {
+	box-sizing: content-box;
+}
+
+#flights-container {
+	float: left;
+	margin-top: 0.6em;
+	width: 70%;
+	padding: 0 1em;
+}
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+tbody tr:nth-child(odd) {
+	background: #f9f9f9;
+}
+th {
+	border-bottom: 2px solid #ddd;
+}
+th, td {
+	text-align: left;
+	padding: 0.8em;
+}
+td {
+	border-top: 1px solid #ddd;
+}
+caption {
+	font-size: 1.5em;
+	font-weight: bold;
+	padding-bottom: 0.5em;
+}
+caption span {
+	font-size: 0.8em;
+}
+
+@media (max-width: 1025px) {
+	#flights-container {
+		width: calc( 100% - 320px );
+	}
+}
+@media (max-width: 800px) {
+	#flights-container {
+		width: 100%;
+	}
+	form {
+		width: 100%
+	}
+	input, .ui-spinner {
+		width: 200px;
+	}
+	fieldset > div {
+		float: left;
+		margin-left: 0.5em;
+		height: 70px;
+	}
+	fieldset > div:last-child {
+		width: 100%;
+	}
+}
+
+@media (max-width: 500px) {
+	td, th {
+		padding: 0.8em 0.1em;
+	}
+	#flights-container {
+		padding: 0;
+	}
+}

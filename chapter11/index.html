@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Find a Flight!</title>
+	<link href="css/app.css" rel="stylesheet">
+</head>
+<body>
+
+<form>
+	<fieldset>
+		<legend>Find a Flight</legend>
+
+		<div>
+			<label for="to-airport">To:</label>
+			<input id="to-airport" value="ATL" required>
+		</div>
+		<div>
+			<label for="from-airport">From:</label>
+			<input id="from-airport" value="DTW" required>
+		</div>
+		<div>
+			<label for="date">Date:</label>
+			<input type="date" id="date" value="2014-02-24" required>
+		</div>
+		<div>
+			<label>Hops:</label>
+			<div id="hops">
+				<label for="hops-any">Any</label>
+				<input type="radio" name="hops" id="hops-any" value="" checked>
+				<label for="hops-nonstop">Nonstop Only</label>
+				<input type="radio" name="hops" id="hops-nonstop" value="NONSTOP">
+			</div>
+		</div>
+		<div>
+			<label for="results">Max # of Results:</label>
+			<input id="results" value="10" min="10" max="100" step="10">
+		</div>
+		<div>
+			<label for="order-by">Order By:</label>
+			<select id="order-by">
+				<option value="0">Arrival Time</option>
+				<option value="1">Departure Time</option>
+				<option value="2">Duration</option>
+			</select>
+		</div>
+		<div>
+			<button id="lookup">Lookup</button>
+		</div>
+	</fieldset>
+</form>
+
+<div id="flights-container"></div>
+
+<script src="js/require.js" data-main="js/app"></script>
+
+</body>
+</html>
