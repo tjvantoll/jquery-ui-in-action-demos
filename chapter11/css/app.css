@@ -5,6 +5,7 @@ body {
 	margin: 10px;
 }
 * {
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 form {
@@ -36,9 +37,12 @@ input {
 select {
 	width: 200px;
 }
-#lookup {
+.ui-priority-primary {
 	background: green;
 	color: white;
+	font-weight: normal;
+}
+#lookup {
 	width: 100%;
 	margin-top: 1em;
 }
