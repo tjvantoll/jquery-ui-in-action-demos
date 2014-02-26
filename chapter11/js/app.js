@@ -5,7 +5,7 @@ require([ "text", "jquery", "underscore", "jquery-ui/autocomplete", "jquery-ui/b
 		toAirport = $( "#to-airport" ),
 		date = $( "#date" ),
 		hops = $( "#hops" ).buttonset(),
-		results = $( "#results" ).spinner(),
+		results = $( "#results" ),
 		orderBy = $( "#order-by" ).selectmenu(),
 		processingDialog = $( "<div>" ).dialog({
 			autoOpen: false,
@@ -18,8 +18,11 @@ require([ "text", "jquery", "underscore", "jquery-ui/autocomplete", "jquery-ui/b
 		processingDialog.append( progressbar );
 		$( "#lookup" ).button();
 
-		if ( !isNativeDateTypeAvailable() ) {
+		if ( !isTypeSupported( "date" ) ) {
 			date.datepicker({ dateFormat: "yy-mm-dd" });
+		}
+		if ( !isTypeSupported( "number" ) ) {
+			results.spinner();
 		}
 
 		lookupAirports().then(function( data ) {
@@ -34,10 +37,10 @@ require([ "text", "jquery", "underscore", "jquery-ui/autocomplete", "jquery-ui/b
 		setupEvents();
 	};
 
-	function isNativeDateTypeAvailable() {
+	function isTypeSupported( type ) {
 		var input = document.createElement( "input" );
-		input.setAttribute( "type", "date" );
-		return input.type === "date";
+		input.setAttribute( "type", type );
+		return input.type === type;
 	};
 
 	function lookupAirports() {
@@ -45,7 +48,6 @@ require([ "text", "jquery", "underscore", "jquery-ui/autocomplete", "jquery-ui/b
 	};
 
 	function lookupFlights() {
-		return;
 		var selectedDate = $.datepicker.parseDate( "yy-mm-dd", date.val() );
 		return $.ajax({
 			headers: { "X-Mashape-Authorization": "CJOMaM8W7JgCCyHV5LO7wGzaHBo1jNfR" },
@@ -68,8 +70,8 @@ require([ "text", "jquery", "underscore", "jquery-ui/autocomplete", "jquery-ui/b
 		$( data ).find( "route" ).each(function() {
 			var route = $( this ),
 				flight = {
-					from: route.attr( "actualfrom.1" ),
-					to: route.attr( "actualto.1" ),
+					from: route.attr( "ActualFrom.1" ),
+					to: route.attr( "ActualTo.1" ),
 					departureDate: route.attr( "DepartureDate.3" ),
 					departureTime: route.attr( "DepartureTime.1" ),
 					arrivalDate: route.attr( "ArrivalDate.3" ),
@@ -86,13 +88,6 @@ require([ "text", "jquery", "underscore", "jquery-ui/autocomplete", "jquery-ui/b
 	};
 
 	function setupValidation() {
-		results.on( "change", function() {
-			if ( results.spinner( "isValid" ) ) {
-				results[ 0 ].setCustomValidity( "" );
-			} else {
-				results[ 0 ].setCustomValidity( "Please enter a multiple of 10." );
-			}
-		});
 		date.on( "change", function() {
 			var value;
 			try {
@@ -108,15 +103,23 @@ require([ "text", "jquery", "underscore", "jquery-ui/autocomplete", "jquery-ui/b
 
 	// Handle for browsers without HTML5 constraint validation turned on.
 	function validateForm() {
-		var form = $( "form" );
-		form.find( ".ui-state-error-text" ).removeClass( "ui-state-error-text" );
-		form.find( ":invalid" ).each(function() {
+		var invalidFields,
+			form = $( "form" );
+
+		form.find( ".ui-state-error-text" )
+			.removeClass( "ui-state-error-text" )
+		form.find( "[aria-invalid]" ).attr( "aria-invalid", false )
+		form.find( ":ui-tooltip" ).tooltip( "destroy" );
+
+		invalidFields = form.find( ":invalid" ).each(function() {
 			form.find( "label[for=" + this.id + "]" )
 				.addClass( "ui-state-error-text" )
 			$( this ).attr( "aria-invalid", true )
 				.attr( "title", this.validationMessage )
 				.tooltip({ tooltipClass: "ui-state-error" });
 		}).first().focus();
+
+		return invalidFields.length === 0;
 	};
 
 	function setupEvents() {
