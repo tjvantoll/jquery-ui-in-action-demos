@@ -83,7 +83,9 @@ require([ "text", "jquery", "underscore", "jquery-ui/autocomplete", "jquery-ui/b
 			flights.push( flight );
 		});
 
-		html = _.template( flightListTemplate, { flights: flights });
+		/*html = _.template( flightListTemplate, { flights: flights });*/
+		html = _.template( $( "#flights-template" ).html(),
+			{ flights: flights });
 		$( "#flights-container" ).html( html );
 	};
 

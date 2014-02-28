@@ -14,15 +14,15 @@
 
 		<div>
 			<label for="from-airport">From:</label>
-			<input id="from-airport" value="DTW" required>
+			<input id="from-airport" autocomplete="off" value="DTW" required>
 		</div>
 		<div>
 			<label for="to-airport">To:</label>
-			<input id="to-airport" value="ATL" required>
+			<input id="to-airport" autocomplete="off" value="ATL" required>
 		</div>
 		<div>
 			<label for="date">Date:</label>
-			<input type="date" id="date" placeholder="yyyy-mm-dd" value="2014-02-24" required>
+			<input type="date" id="date" placeholder="yyyy-mm-dd" value="2014-03-02" required>
 		</div>
 		<div>
 			<label for="results">Max # of Results:</label>
@@ -52,6 +52,38 @@
 </form>
 
 <div id="flights-container"></div>
+
+<script type="text/html" id="flights-template">
+	<% if ( flights.length === 0 ) { %>
+		<p>There were no flights found that matched your selections.</p>
+	<% } else { %>
+		<table id="flights">
+			<caption>
+				Showing all trips from <%- flights[ 0 ].from %> to <%- flights[ 0 ].to %> 
+				on <%- flights[ 0 ].departureDate %>. 
+				<span>(<%- flights.length %> result<%- flights.length === 1 ? "" : "s" %> found)</span>
+			</caption>
+			<thead class="ui-widget-header">
+				<th>Departure</th>
+				<th>Arrival</th>
+				<th>Duration</th>
+				<th>Flights</th>
+				<th>Flight Numbers</th>
+			</thead>
+			<tbody>
+				<% _.each( flights, function( flight ) { %>
+					<tr>
+						<td><%- flight.departureTime %></td>
+						<td><%- flight.arrivalTime %></td>
+						<td><%- flight.duration %></td>
+						<td><%- flight.flights %></td>
+						<td><%- flight.flightNumbers %></td>
+					</tr>
+				<% }) %>
+			</tbody>
+		</table>
+	<% } %>
+</script>
 
 <script src="js/require.js" data-main="js/app"></script>
 
