@@ -1,0 +1,29 @@
+<% if ( flights.length === 0 ) { %>
+	<p>There were no flights found that matched your selections.</p>
+<% } else { %>
+	<table id="flights">
+		<caption>
+			Showing all trips from <%- flights[ 0 ].from %> to <%- flights[ 0 ].to %> 
+			on <%- flights[ 0 ].departureDate %>. 
+			<span>(<%- flights.length %> result<%- flights.length === 1 ? "" : "s" %> found)</span>
+		</caption>
+		<thead class="ui-widget-header">
+			<th>Departure</th>
+			<th>Arrival</th>
+			<th>Duration</th>
+			<th>Flights</th>
+			<th>Flight Numbers</th>
+		</thead>
+		<tbody>
+			<% _.each( flights, function( flight ) { %>
+				<tr>
+					<td><%- flight.departureTime %></td>
+					<td><%- flight.arrivalTime %></td>
+					<td><%- flight.duration %></td>
+					<td><%- flight.flights %></td>
+					<td><%- flight.flightNumbers %></td>
+				</tr>
+			<% }) %>
+		</tbody>
+	</table>
+<% } %>

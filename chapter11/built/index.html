@@ -4,14 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Find a Flight!</title>
-
-	<script>
-		if ( window.location.hostname === "localhost" ) {
-			document.write( '<link href="css/app.css" rel="stylesheet">' );
-		} else {
-			document.write( '<link href="built/css/app.css" rel="stylesheet">' );
-		}
-	</script>
+	<link href="css/app.css" rel="stylesheet">
 </head>
 <body>
 
@@ -60,14 +53,40 @@
 
 <div id="flights-container"></div>
 
-<script>
-	if ( window.location.hostname === "localhost" ) {
-		document.write( '<script src="js/require.js" ' +
-			'data-main="js/app"><\/script>' );
-	} else {
-		document.write( '<script src="built/js/app.js"><\/script>' );
-	}
+<script type="text/html" id="flights-template">
+	<% if ( flights.length === 0 ) { %>
+		<p>There were no flights found that matched your selections.</p>
+	<% } else { %>
+		<table id="flights">
+			<caption>
+				Showing all trips from <%- flights[ 0 ].from %> to <%- flights[ 0 ].to %> 
+				on <%- flights[ 0 ].departureDate %>. 
+				<span>(<%- flights.length %> result<%- flights.length === 1 ? "" : "s" %> found)</span>
+			</caption>
+			<thead class="ui-widget-header">
+				<th>Departure</th>
+				<th>Arrival</th>
+				<th>Duration</th>
+				<th>Flights</th>
+				<th>Flight Numbers</th>
+			</thead>
+			<tbody>
+				<% _.each( flights, function( flight ) { %>
+					<tr>
+						<td><%- flight.departureTime %></td>
+						<td><%- flight.arrivalTime %></td>
+						<td><%- flight.duration %></td>
+						<td><%- flight.flights %></td>
+						<td><%- flight.flightNumbers %></td>
+					</tr>
+				<% }) %>
+			</tbody>
+		</table>
+	<% } %>
 </script>
+
+<!--<script src="js/require.js" data-main="js/app"></script>-->
+<script src="built/js/app.js"></script>
 
 </body>
 </html>

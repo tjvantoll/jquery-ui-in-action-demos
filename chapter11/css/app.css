@@ -101,14 +101,14 @@ caption span {
 	input, .ui-spinner {
 		width: 200px;
 	}
-	/* Test on iPhone 
 	.ui-buttonset, .ui-selectmenu-button {
 		font-size: 0.9em;
-	} */
+	}
 	fieldset > div {
 		float: left;
 		margin-left: 0.5em;
 		height: 70px;
+		width: 210px;
 	}
 	fieldset > div:last-child {
 		width: 100%;
@@ -121,5 +121,8 @@ caption span {
 	}
 	#flights-container {
 		padding: 0;
+	}
+	fieldset > div {
+		width: 100%;
 	}
 }

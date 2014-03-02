@@ -63,10 +63,8 @@ require([ "text", "jquery", "underscore", "jquery-ui/autocomplete", "jquery-ui/b
 		});
 	};
 
-	function buildFlights( data ) {
-		var html,
-			flights = []
-
+	function parseFlights( data ) {
+		var flights = []
 		$( data ).find( "route" ).each(function() {
 			var route = $( this ),
 				flight = {
@@ -82,10 +80,11 @@ require([ "text", "jquery", "underscore", "jquery-ui/autocomplete", "jquery-ui/b
 				};
 			flights.push( flight );
 		});
+		return flights;
+	};
 
-		/*html = _.template( flightListTemplate, { flights: flights });*/
-		html = _.template( $( "#flights-template" ).html(),
-			{ flights: flights });
+	function templateFlights( flights ) {
+		var html = _.template( flightListTemplate, { flights: flights });
 		$( "#flights-container" ).html( html );
 	};
 
@@ -130,7 +129,8 @@ require([ "text", "jquery", "underscore", "jquery-ui/autocomplete", "jquery-ui/b
 			if ( validateForm() ) {
 				processingDialog.dialog( "open" );
 				lookupFlights().then(function( data ) {
-					buildFlights( data );
+					var flights = parseFlights( data );
+					templateFlights( flights );
 					processingDialog.dialog( "close" );
 				});
 			}
