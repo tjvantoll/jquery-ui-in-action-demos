@@ -1,4 +1,5 @@
 $.widget( "tj.todo", {
+	defaultElement: "<ul>",
 	options: {
 		name: "todo"
 	},
@@ -10,7 +11,7 @@ $.widget( "tj.todo", {
 			"click input": function( event ) {
 				// In case a user adds class="ui-state-disabled" in a list item's markup
 				if ( $( event.target ).parents( ".ui-state-disabled" ).length > 0 ) {
-					event.preventDefault();    
+					event.preventDefault();
 					return;
 				}
 				this._renderList();
