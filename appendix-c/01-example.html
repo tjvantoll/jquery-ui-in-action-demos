@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Grocery List Manager</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+</head>
+<body>
+
+<script type="text/template" id="grocery-template">
+	<% _.each( groceries, function( grocery ) { %>
+		<li>
+			<%= grocery.name %>
+			<button data-id="<%= grocery.id %>" data-text="false" data-role="button"
+				data-icons='{"primary":"ui-icon-closethick"}'>
+				Remove
+			</button>
+		</li>
+	<% }); %>
+</script>
+
+<ul id="grocery-list"></ul>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="../js/declarative-widgets.js"></script>
+<script src="underscore.js"></script>
+<script src="backbone.js"></script>
+<script>
+	var Grocery = Backbone.Model.extend({}),
+		GroceryList = Backbone.Collection.extend({
+			model: Grocery
+		}),
+		GroceryView = Backbone.View.extend({
+			template: _.template( $( "#grocery-template" ).html() ),
+			el: "#grocery-list",
+			events: {
+				"click button": "remove"
+			},
+			render: function() {
+				this.$el
+					.html( this.template({ groceries: this.model.toJSON() }))
+					.enhance();
+			},
+			remove: function( event ) {
+				var grocery = this.model.get( $( event.currentTarget ).attr( "data-id" ) );
+				this.model.remove( grocery );
+				this.render();
+			}
+		});
+
+	new GroceryView({
+		model: new GroceryList([
+			new Grocery({ id: 1, name: "Apples" }),
+			new Grocery({ id: 2, name: "Bananas" }),
+			new Grocery({ id: 3, name: "Peanut Butter" }),
+			new Grocery({ id: 4, name: "Bread" }),
+			new Grocery({ id: 5, name: "Milk" })
+		])
+	}).render();
+</script>
+
+</body>
+</html>
