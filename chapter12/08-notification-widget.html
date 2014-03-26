@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Notification Widget</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+	<style>
+		.tj-notification {
+			display: inline-block;
+			padding: 0.5em 1em;
+			position: absolute;
+			display: none;
+		}
+		.tj-notification-button {
+			display: inline-block;
+			margin-left: 0.5em;
+		}
+	</style>
+</head>
+<body>
+
+<button id="show-button">Show Notification</button>
+<button id="hide-button">Hide Notification</button>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$.widget( "tj.notification", {
+		options: {
+			show: true,
+			hide: true
+		},
+		_create: function() {
+			this.button = $( "<button>Close</button>" )
+				.addClass( "tj-notification-button" )
+				.button({
+					text: false,
+					icons: { primary: "ui-icon-closethick" }
+				})
+				.appendTo( this.element );
+			this._on( this.button, {
+				click: this.close
+			});
+
+			this.element
+				.addClass( "ui-widget ui-widget-content tj-notification" )
+				.position({
+					my: "right-10 bottom-10",
+					at: "right bottom",
+					of: window
+				});
+		},
+		open: function() {
+			this._show( this.element, this.options.show );
+		},
+		close: function() {
+			this._hide( this.element, this.options.hide );
+		},
+		_destroy: function() {
+			this.element.removeClass( "ui-widget ui-widget-content tj-notification" );
+			this.button.remove();
+		}
+	});
+
+	var message = $( "<div>Your account has been updated.</div>" )
+		.appendTo( "body" )
+		.notification({
+			show: 300,
+			hide: "blind"
+		});
+	$( "#show-button" ).button().on( "click", function() {
+		message.notification( "open" );
+	});
+	$( "#hide-button" ).button().on( "click", function() {
+		message.notification( "close" );
+	});
+</script>
+
+</body>
+</html>

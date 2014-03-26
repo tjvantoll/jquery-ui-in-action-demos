@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Positioning Boxes</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+	<style>
+		div { height: 100px; width: 100px; }
+		#red { background: red; }
+		#blue { background: blue; }
+
+		/* Add some spacing */
+		#blue { margin: 3em 10em; }
+	</style>
+</head>
+<body>
+
+<div id="red"></div>
+<div id="blue"></div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$( "#red" ).position({
+		my: "left top",
+		at: "right bottom",
+		of: "#blue"
+	});
+</script>
+
+</body>
+</html>

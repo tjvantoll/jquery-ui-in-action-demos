@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Generating Unique Ids</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+</head>
+<body>
+
+<p>Press Enter.</p>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	$( document ).on( "keydown", function( event ) {
+		if ( event.keyCode === $.ui.keyCode.ENTER ) {
+			alert( "Enter was pressed!" );
+		}
+	});
+</script>
+
+</body>
+</html>

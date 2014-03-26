@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Embedded Window Widget Usage</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+</head>
+<body>
+
+<div>Parent</div>
+<iframe src="child.html"></iframe>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script>
+	$.widget( "tj.blink", {
+		_create: function() {
+			this._on( this.window, {
+				click: function() {
+					this.element.fadeOut( "fast" ).fadeIn( "fast" );
+				}
+			});
+		}
+	});
+
+	$( "div" ).blink();
+	var child = $( "iframe" ).load(function() {
+		$( "div", child.contents() ).blink();
+	});
+</script>
+
+</body>
+</html>

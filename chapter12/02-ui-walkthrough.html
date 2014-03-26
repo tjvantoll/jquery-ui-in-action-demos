@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>UI Walkthrough</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+	<style>
+		#dialog p { display: none; }
+		#dialog[data-step="1"] #step-1 { display: block; }
+		#dialog[data-step="2"] #step-2 { display: block; }
+		#dialog[data-step="3"] #step-3 { display: block; }
+
+		header {
+			height: 50px;
+			width: 100%;
+			background: black;
+			color: white;
+		}
+		aside {
+			width: 150px;
+			height: 500px;
+			background: red;
+		}
+		footer {
+			position: absolute;
+			bottom: 0;
+			height: 50px;
+			width: 100%;
+			background: black;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+
+<header>My awesome header</header>
+<aside>My awesome sidebar</aside>
+<footer>My awesome footer</footer>
+
+<div id="dialog" data-step="1" title="Walkthrough">
+	<p id="step-1">1) This is the header!</p>
+	<p id="step-2">2) This is the sidebar!</p>
+	<p id="step-3">3) This is the footer!</p>
+</div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	var positions = [
+		{
+			my: "center top",
+			at: "center bottom",
+			of: "header"
+		},
+		{
+			my: "left center",
+			at: "right center",
+			of: "aside"
+		},
+		{
+			my: "center bottom",
+			at: "center top",
+			of: "footer"
+		}
+	];
+
+	$( "#dialog" ).dialog({
+		modal: true,
+		buttons: {
+			"Next": function() {
+				var step = parseInt( $( this ).attr( "data-step" ), 10 );
+				if ( step === 3 ) {
+					$( this ).dialog( "close" );
+				} else {
+					$( this )
+						.dialog( "option", "position", positions[ step ] )
+						.attr( "data-step", ++step )
+				}
+			}
+		},
+		position: positions[ 0 ]
+	});
+</script>
+
+</body>
+</html>

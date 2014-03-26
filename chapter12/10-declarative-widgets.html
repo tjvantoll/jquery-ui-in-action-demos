@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Delcarative Widgets</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+	<link href="../chapter08/todo.css" rel="stylesheet">
+</head>
+<body>
+
+<div data-role="tabs">
+	<ul>
+		<li><a href="#one">One</a></li>
+		<li><a href="#two">Two</a></li>
+	</ul>
+	<div id="one">
+		<div data-role="progressbar" data-value="false"></div>
+	</div>
+	<div id="two">
+		<div data-role="slider" data-min="0" data-max="50"
+			data-step="10"></div>
+	</div>
+</div>
+
+<ul data-role="todo">
+	<li>Clean dishes</li>
+	<li>Walk dog</li>
+	<li>Mop floor</li>
+</ul>
+
+<div data-role="dialog" id="dialog" data-height="200"
+	data-width="500"></div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="../js/declarative-widgets.js"></script>
+<script src="../chapter08/todo.js"></script>
+
+<script>
+	$( document ).enhance();
+</script>
+
+</body>
+</html>
