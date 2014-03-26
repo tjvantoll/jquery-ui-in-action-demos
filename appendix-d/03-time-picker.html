@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Currency Picker</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+</head>
+<body>
+
+<input id="spinner" value="1025">
+
+<label for="culture">Culture:</label>
+<select id="culture">
+	<option value="en-EN" selected>English (U.S.)</option>
+	<option value="en-GB">English (U.K.)</option>
+	<option value="de-DE">German</option>
+	<option value="ja-JP">Japanese</option>
+</select>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="globalize.js"></script>
+<script src="globalize.cultures.js"></script>
+
+<script>
+	$.widget( "ui.timespinner", $.ui.spinner, {
+		options: {
+			step: 60 * 1000,
+			page: 60
+		},
+		_parse: function( value ) {
+			if ( typeof value === "string" ) {
+				if ( Number( value ) == value ) {
+					return Number( value );
+				}
+				return +Globalize.parseDate( value );
+			}
+			return value;
+		},
+		_format: function( value ) {
+			return Globalize.format( new Date( value ), "t" );
+		}
+	});
+
+	Globalize.culture( "en" );
+	$( "#spinner" ).timespinner();
+
+	$( "#culture" ).on( "change", function() {
+		var current = $( "#spinner" ).timespinner( "value" );
+		Globalize.culture( $(this).val() );
+		$( "#spinner" ).timespinner( "value", current );
+	});
+</script> 
+
+</body>
+</html>

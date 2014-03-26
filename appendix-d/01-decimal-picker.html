@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Decimal Picker</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+</head>
+<body>
+
+<input id="spinner" value="1">
+
+<label for="culture">Culture:</label>
+<select id="culture">
+	<option value="en-EN" selected>English (U.S.)</option>
+	<option value="en-GB">English (U.K.)</option>
+	<option value="de-DE">German</option>
+	<option value="ja-JP">Japanese</option>
+</select>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="globalize.js"></script>
+<script src="globalize.cultures.js"></script>
+
+<script>
+	$( "#spinner" ).spinner({
+		step: 0.01,
+		page: 100,
+		numberFormat: "n"
+	});
+
+	$( "#culture" ).on( "change", function() {
+		var current = $( "#spinner" ).spinner( "value" );
+		Globalize.culture( $(this).val() );
+		$( "#spinner" ).spinner( "value", current );
+	});
+</script>
+
+</body>
+</html>
