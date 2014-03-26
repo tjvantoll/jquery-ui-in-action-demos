@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Progress Element Polyfill</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+</head>
+<body>
+
+<progress value="50" max="100"></progress>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="modernizr.js"></script>
+
+<script>
+	if ( document.createElement( "progress" ).max === undefined ) {
+		$( "progress" ).each(function() {
+			var progress = $( this ),
+				div = $( "<div>" ).progressbar({
+					max: parseInt( progress.attr( "max" ), 10 ) || 100,
+					value: parseInt( progress.attr( "value" ), 10 ) || false
+				});
+			progress.replaceWith( div );
+		});
+	}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Datalist Element Polyfill</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+</head>
+<body>
+
+<input type="text" list="projects">
+<datalist id="projects">
+	<!--[if IE]><select><!--<![endif]-->
+	<option>jQuery</option>
+	<option>jQuery UI</option>
+	<option>jQuery Mobile</option>
+	<!--[if IE]><select><!--<![endif]-->
+</datalist>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="modernizr.js"></script>
+
+<script>
+	if ( !Modernizr.input.list ) {
+		$( "input[type=text][list]" ).each(function() {
+			var options,
+				listAttribute = $( this ).attr( "list" ),
+				datalist = $( "#" + listAttribute );
+			if ( datalist.length > 0 ) {
+				options = [];
+				datalist.find( "option" ).each(function() {
+					options.push({ label: this.innerHTML, value: this.value });
+				});
+				$( this ).autocomplete({ source: options });
+			}
+		});
+		$( "datalist" ).remove();
+	}
+</script>
+
+</body>
+</html>

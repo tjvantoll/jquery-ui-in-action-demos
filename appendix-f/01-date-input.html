@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Date Input Polyfill</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+</head>
+<body>
+
+<input type="date">
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="modernizr.js"></script>
+
+<script>
+	if ( !Modernizr.inputtypes.date ) {
+		$( "input[type=date]" ).datepicker({ dateFormat: "yy-mm-dd" });
+	}
+</script>
+
+</body>
+</html>
