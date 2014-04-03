@@ -7,7 +7,6 @@
 	<link href="../css/jquery-ui.css" rel="stylesheet">
 
 	<style>
-		.invalid { color: red; }
 		textarea {
 			display: inline-block;
 			width: 100%;
@@ -40,7 +39,7 @@
 		beforeClose: function( event, ui ) {
 			if ( !$( "#terms" ).prop( "checked" ) ) {
 				event.preventDefault();
-				$( "[for=terms]" ).addClass( "invalid" );
+				$( "[for=terms]" ).addClass( "ui-state-error-text" );
 			}
 		},
 		width: 600
