@@ -15,19 +15,20 @@
 
 <script>
 	$( "#autocomplete" ).autocomplete({
+		minLength: 2,
 		source: function( request, response ) {
-			$.getJSON( "https://api.github.com/orgs/jquery/repos" )
-				.then( function( data ) {
+			$.getJSON( "https://api.github.com/search/repositories", { q: request.term }) 
+				.then( function( data ) {                              
 					var results = [],
 						term = $.ui.autocomplete.escapeRegex( request.term ),
 						matcher = new RegExp( term, "i" ),
 						i = 0;
-					$.grep( data, function( repo ) {
-						if ( matcher.test( repo.name ) ) {
-							results.push( repo.name );
+					$.grep( data.items, function( repo ) {
+						if ( matcher.test( repo.full_name ) ) {
+							results.push( repo.full_name );
 						}
 					});
-					response( results );
+					response( results );                               
 				});
 		}
 	});
