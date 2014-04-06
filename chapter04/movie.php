@@ -26,7 +26,16 @@
 <h3><? echo $movie[ "title" ] ?></h3>
 
 <ul>
-	<li><strong>Box Office</strong>: <? echo $movie[ "box_office" ] ?> million USD</li>
-	<li><strong>Budget</strong>: <? echo $movie[ "budget" ] ?> million USD</li>
-	<li><strong>Released</strong>: <? echo $movie[ "release" ] ?></li>
+	<li>
+		<strong>Box Office</strong>: 
+		<? echo $movie[ "box_office" ] ?> million USD
+	</li>
+	<li>
+		<strong>Budget</strong>: 
+		<? echo $movie[ "budget" ] ?> million USD
+	</li>
+	<li>
+		<strong>Released</strong>: 
+		<? echo $movie[ "release" ] ?>
+	</li>
 </ul>
