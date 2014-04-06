@@ -8,8 +8,8 @@
 	<style>
 		#tabs li .ui-icon-close {
 			float: left;
-			margin: 0.4em 0.2em 0 0;
-			cursor: pointer;
+			margin: 0.7em 0.3em 0 0;
+			border: none;
 		}
 		#movie-list {
 			float: left;
@@ -63,7 +63,8 @@
 			tabs.find( ".ui-tabs-nav" )
 				.append( "<li data-movie='" + movie + "'>" +
 				  "<a href='" + this.href + "'>" + movie + "</a>" +
-				  "<span class='ui-icon ui-icon-close'>Remove Tab</span>" +
+				  "<button class='ui-icon ui-icon-close'>" +
+				  "Remove Tab</button>" +
 				  "</li>" );
 			tabs.tabs( "refresh" );
 		}
@@ -73,7 +74,12 @@
 		tabs.tabs( "option", "active", index );
 	});
 
-	tabs.on( "click", ".ui-icon-close", function() {
+	tabs.on( "click keydown", ".ui-icon-close", function( event ) {
+		if ( event.type === "keydown" && !( 
+		  event.keyCode === $.ui.keyCode.ENTER ||
+		  event.keyCode === $.ui.keyCode.SPACE ) ) {
+			return;
+		}
 		var panelId = $( this ).closest( "li" ).remove()
 			.attr( "aria-controls" );
 		$( "#" + panelId ).remove();
