@@ -10,16 +10,16 @@
 		.ui-dialog p {
 			display: none;
 		}
-		.ui-dialog.admin p {
+		.admin-dialog p {
 			display: block;
 		}
-		.ui-dialog.admin form {
+		.admin-dialog form {
 			display: none;
 		}
 		.ui-dialog label {
 			display: block;
 		}
-		.ui-dialog.admin button:first-child {
+		.admin-dialog button:first-child {
 			display: none;
 		}
 
@@ -145,7 +145,7 @@
 		$( "#dialog" )
 			.dialog( "option", {
 				title: "Editing " + firstName + " " + lastName,
-				dialogClass: admin ? "admin" : ""
+				dialogClass: admin ? "admin-dialog" : ""
 			})
 			.data( "editingRow", row )
 			.dialog( "open" ); 
