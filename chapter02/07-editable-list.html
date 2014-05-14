@@ -7,12 +7,26 @@
 	<link href="../css/jquery-ui.css" rel="stylesheet">
 
 	<style>
-		.ui-dialog p { display: none; }
-		.ui-dialog.admin p { display: block; }
-		.ui-dialog.admin form { display: none; }
-		.ui-dialog.admin button:first-child { display: none; }
+		.ui-dialog p {
+			display: none;
+		}
+		.ui-dialog.admin p {
+			display: block;
+		}
+		.ui-dialog.admin form {
+			display: none;
+		}
+		.ui-dialog label {
+			display: block;
+		}
+		.ui-dialog.admin button:first-child {
+			display: none;
+		}
 
-		table { border-collapse: collapse; width: 100%; }
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
 		th {
 			border-bottom: 2px solid black;
 		}
@@ -88,14 +102,11 @@
 
 <div id="dialog">
 	<form>
-		<div>
-			<label for="firstName">First Name:</label>
-			<input type="text" id="firstName">
-		</div>
-		<div>
-			<label for="lastName">Last Name:</label>
-			<input type="text" id="lastName">
-		</div>
+		<label for="firstName">First Name:</label>
+		<input type="text" id="firstName">
+
+		<label for="lastName">Last Name:</label>
+		<input type="text" id="lastName">
 	</form>
 	<p>Administrators cannot be edited.</p>
 </div>
