@@ -8,23 +8,27 @@
 </head>
 <body>
 
-<div id="dialog"></div>
+<div id="dialog-1">jQuery UI Rocks!</div>
+<div id="dialog-2">jQuery UI Rocks!</div>
 
 <script src="../js/jquery.js"></script>
 <script src="../js/jquery-ui.js"></script>
 
 <script>
-	$( document ).on( "dialogcreate", function() {
-		console.log( this );
-	});
-	$( "body" ).on( "dialogcreate", function() {
-		console.log( this );
-	});
-	$( "#dialog" ).on( "dialogcreate", function() {
-		console.log( this );
+	// The two ways of handling events in jQuery UI. These example are
+	// equivalent.
+
+	// Callback
+	$( "#dialog-1" ).dialog({
+		create: function() {
+			$( this ).css( "color", "red" );
+		}
 	});
 
-	$( "#dialog" ).dialog();
+	// Event handler
+	$( "#dialog-2" ).on( "dialogcreate", function() {
+		$( this ).css( "color", "red" );
+	}).dialog();
 </script>
 
 </body>
