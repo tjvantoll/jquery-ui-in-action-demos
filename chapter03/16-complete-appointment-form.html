@@ -8,11 +8,25 @@
 	<link href="../css/jquery-ui.css" rel="stylesheet">
 
 	<style>
+		* { box-sizing: border-box; }
 		fieldset { padding: 1em; }
-		label { display: block; margin: 1em 0 0 0; }
-		#buttonset { display: inline-block; margin-top: 0.3em; }
-		span label { display: inline-block; margin: 0; }
-		select, input[type="text"] { width: 200px; font-size: 1.1em; }
+		label {
+			display: block;
+			margin: 1em 0 0 0;
+		}
+		#buttonset {
+			display: inline-block;
+			margin-top: 0.3em;
+		}
+		span label {
+			display: inline-block;
+			margin: 0; 
+		}
+		select, input[type="text"], .ui-spinner, fieldset > div > button {
+			width: 250px;
+			font-size: 1.1em;
+		}
+		.ui-buttonset .ui-button { width: 125px; }
 		input[type="text"] { padding: 0.2em; }
 		button { margin-top: 1em; }
 		.ui-selectmenu-button { margin-top: 0.2em; }
