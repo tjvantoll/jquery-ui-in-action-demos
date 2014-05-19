@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Datepicker Appointment Selection</title>
+	<link href="../css/jquery-ui.css" rel="stylesheet">
+
+	<style>
+		* { box-sizing: border-box; }
+		fieldset { padding: 1em; }
+		label {
+			display: block;
+			margin: 1em 0 0 0;
+		}
+		span label {
+			display: inline-block;
+			margin: 0; 
+		}
+		select, input[type="text"], .ui-spinner, fieldset > div > button {
+			width: 250px;
+			font-size: 1.1em;
+		}
+		.ui-buttonset .ui-button { width: 125px; }
+		input[type="text"] { padding: 0.2em; }
+		button { margin-top: 1em; }
+		.ui-selectmenu-button { margin-top: 0.2em; }
+		.ui-selectmenu-button span.ui-selectmenu-text {
+			padding: 0.2em 0 0.2em 1em;
+		}
+	</style>
+</head>
+<body>
+
+<form>
+	<div>
+		<label for="doctor">Doctor:</label>
+		<select id="doctor" name="doctor">
+			<option>No Preference</option>
+			<optgroup label="Doctors">
+				<option>Adams</option>
+				<option>Crowley</option>
+				<option>Smith</option>
+				<option>VanToll</option>
+			</optgroup>
+			<optgroup label="Nurses">
+				<option>Davis</option>
+				<option>Johnson</option>
+				<option>Jones</option>
+				<option>White</option>
+			</optgroup>
+		</select>
+	</div>
+	<div>
+		<label for="date">Date:</label>
+		<input type="text" name="date" id="date" />
+	</div>
+	<div>
+		<button>Submit</button>
+	</div>
+</form>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-ui.js"></script>
+
+<script>
+	function checkDate( date ) {
+		var isWeekday = date.getDay() > 0 && date.getDay() < 6;
+		if ( $( "#doctor" ).val() === "Smith" ) {
+			return [ isWeekday && date.getDay() != 2 ];
+		} else {
+			return [ isWeekday ];
+		}
+	};
+
+	$( "#doctor" ).selectmenu();
+	$( "#date" ).datepicker({
+		beforeShowDay: checkDate
+	}).datepicker( "option", $.datepicker.regional[ "" ] );
+
+	$( "form" ).on( "submit", function( event ) {
+		var date;
+		
+		try {
+			date = $.datepicker.parseDate( "mm/dd/yy", $( "#date" ).val() );
+		} catch ( error ) { }
+
+		if ( !date ) {
+			event.preventDefault();
+			alert( "Please provide a valid date." );
+		}
+		if ( date && !checkDate( date )[ 0 ] ) {
+			event.preventDefault();
+			alert( "Cannot select a weekend or Tuesday for Dr. Smith." );
+		}
+	});
+</script>
+
+</body>
+</html>
