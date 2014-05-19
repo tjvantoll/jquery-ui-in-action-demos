@@ -28,9 +28,8 @@
 			$.getJSON( "https://api.github.com/search/repositories",
 			  { q: request.term + " in:name" }) 
 				.then( function( data ) {
-					var matches = [];
-					$.each( data.items, function( index, repo ) {
-						matches.push( repo.full_name );
+					var matches = $.map( data.items, function( repo ) {
+						return repo.full_name;
 					});
 					response( matches );                               
 				});
