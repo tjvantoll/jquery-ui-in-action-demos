@@ -64,7 +64,7 @@
 		hoverClass: "hover",
 		drop: function( event, ui ) {
 			var count = parseInt( $( "#count" ).text(), 10 );
-			$( "#count" ).text( ++count );
+			$( "#count" ).text( count + 1 );
 		},
 		tolerance: "touch"
 	});
