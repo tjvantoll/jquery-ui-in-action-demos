@@ -7,9 +7,10 @@
 	<link href="../css/jquery-ui.css" rel="stylesheet">
 
 	<style>
+		body { font-size: 3em; }
 		#css {
-			-webkit-transition: color 300ms linear;
-			transition: color 300ms linear;
+			-webkit-transition: color 5000ms linear;
+			transition: color 5000ms linear;
 		}
 		.red { color: red; }
 	</style>
@@ -24,7 +25,7 @@
 
 <script>
 	$( "#ui" ).addClass( "red", {
-		duration: 300,
+		duration: 5000,
 		easing: "linear",
 		complete: function() {
 			console.log( "ui animation complete" );
