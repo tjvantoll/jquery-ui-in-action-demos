@@ -7,12 +7,20 @@
 
 	<style>
 		@-webkit-keyframes spin-3d {
-			from { -webkit-transform: rotateX( 0deg ); }
-			to { -webkit-transform: rotateX( 360deg ); }
+			50% {
+				-webkit-transform: rotateX( 360deg ) rotateY( 360deg ) skewY( 180deg );
+			}
+			100% { 
+				-webkit-transform: rotateX( 0deg ) rotateY( 0deg ) skewY( 0deg );
+			}
 		}
 		@keyframes spin-3d {
-			from { transform: rotateX( 0deg ); }
-			to { transform: rotateX( 360deg ); }
+			50% {
+				transform: rotateX( 360deg ) rotateY( 360deg ) skewY( 180deg );
+			}
+			100% { 
+				transform: rotateX( 0deg ) rotateY( 0deg ) skewY( 0deg );
+			}
 		}
 		div {
 			height: 500px;
