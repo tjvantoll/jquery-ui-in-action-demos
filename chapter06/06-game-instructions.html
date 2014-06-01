@@ -45,7 +45,8 @@
 <script src="../js/jquery-ui.js"></script>
 
 <script>
-	if ( !sessionStorage.getItem( "messageViewed" ) ) {
+	// Commenting out the sessionStorage check to make this example easier to test.
+	// if ( !sessionStorage.getItem( "messageViewed" ) ) {
 		$( "p" ).dialog({
 			show: {
 				effect: "scale",
@@ -68,7 +69,7 @@
 				sessionStorage.setItem( "messageViewed", true );
 			}
 		});
-	}
+	// }
 
 	var fruits = [ "Avocado", "Banana", "Apple", "Cherry", "Fig", "Grape", "Kiwi", "Lemon", "Olives", "Orange", "Pumpkin", "Tomato" ],
 		vegetables = [ "Broccoli", "Carrot", "Celery", "Corn", "Garlic", "Green Bean", "Kale", "Lettuce", "Onion", "Pea", "Spinach", "Turnip" ];
