@@ -4,7 +4,7 @@ $.widget( "tj.todo", {
 		name: "todo"
 	},
 	_create: function() {
-		this.element.addClass( "todo ui-widget ui-widget-content " +
+		this.element.addClass( "tj-todo ui-widget ui-widget-content " +
 			"ui-corner-all" );
 		this._renderList();
 		this._on( this.element, {
@@ -57,7 +57,7 @@ $.widget( "tj.todo", {
 	_renderList: function() {
 		var that = this;
 		this.element.find( "li" ).each(function() {
-			var li = $( this ).addClass( "todo-item ui-state-default" ),
+			var li = $( this ).addClass( "tj-todo-item ui-state-default" ),
 				active = li.find( ":checked" ).length === 1,
 				label = $( "<label>" ),
 				checkbox = $( "<input>", {
@@ -76,9 +76,9 @@ $.widget( "tj.todo", {
 	},
 	_destroy: function() {
 		this.element
-			.removeClass( "todo ui-widget ui-widget-content ui-corner-all" )
+			.removeClass( "tj-todo ui-widget ui-widget-content ui-corner-all" )
 			.find( "li" ).each(function() {
-				var li = $( this ).removeClass( "todo-item ui-state-default" ),
+				var li = $( this ).removeClass( "tj-todo-item ui-state-default" ),
 					input = li.find( "input" ),
 					text = li.text();
 				if ( input.is( ":checked" ) ) {
