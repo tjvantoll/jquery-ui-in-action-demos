@@ -79,14 +79,12 @@
 			this._handleOrientation();
 		},
 		_handleOrientation: function() {
-			if ( this.options.orientation === "vertical" ) {
-				this.element.addClass( "ui-tabs-vertical" );
-			}
+			this.element.toggleClass( "ui-tabs-vertical",
+				this.options.orientation === "vertical" );
 		},
 		_setOption: function( key, value ) {
 			this._superApply( arguments );
 			if ( key === "orientation" ) {
-				this.element.removeClass( "ui-tabs-vertical" );
 				this._handleOrientation();
 			}
 		},
