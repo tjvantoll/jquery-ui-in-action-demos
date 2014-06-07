@@ -10,18 +10,19 @@
 }(function( $ ) {
 
 return $.widget( "tj.todo", {
+	defaultElement: "<ul>",
 	options: {
 		name: "todo"
 	},
 	_create: function() {
-		this.element.addClass( "todo ui-widget ui-widget-content " +
+		this.element.addClass( "tj-todo ui-widget ui-widget-content " +
 			"ui-corner-all" );
 		this._renderList();
 		this._on( this.element, {
 			"click input": function( event ) {
 				// In case a user adds class="ui-state-disabled" in a list item's markup
 				if ( $( event.target ).parents( ".ui-state-disabled" ).length > 0 ) {
-					event.preventDefault();    
+					event.preventDefault();
 					return;
 				}
 				this._renderList();
@@ -67,7 +68,7 @@ return $.widget( "tj.todo", {
 	_renderList: function() {
 		var that = this;
 		this.element.find( "li" ).each(function() {
-			var li = $( this ).addClass( "todo-item ui-state-default" ),
+			var li = $( this ).addClass( "tj-todo-item ui-state-default" ),
 				active = li.find( ":checked" ).length === 1,
 				label = $( "<label>" ),
 				checkbox = $( "<input>", {
@@ -86,9 +87,9 @@ return $.widget( "tj.todo", {
 	},
 	_destroy: function() {
 		this.element
-			.removeClass( "todo ui-widget ui-widget-content ui-corner-all" )
+			.removeClass( "tj-todo ui-widget ui-widget-content ui-corner-all" )
 			.find( "li" ).each(function() {
-				var li = $( this ).removeClass( "todo-item ui-state-default" ),
+				var li = $( this ).removeClass( "tj-todo-item ui-state-default" ),
 					input = li.find( "input" ),
 					text = li.text();
 				if ( input.is( ":checked" ) ) {
