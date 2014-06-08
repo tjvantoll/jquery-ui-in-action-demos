@@ -2,7 +2,7 @@
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
-		define( [ "jquery", "widget" ], factory );
+		define( [ "jquery", "jquery-ui/widget" ], factory );
 	} else {
 
 		// Browser globals
@@ -33,8 +33,9 @@
 		plugin = {
 			enhance: function() {
 				this.find( "[data-role]" ).addBack( "[data-role]" ).each(function() {
-					var role = $( this ).attr( "data-role" );
-					$.fn[ role ].apply( $( this ) );
+					var element = $( this ),
+						role = element.attr( "data-role" );
+					element[ role ]();
 				});
 				return this;
 			}
