@@ -27,7 +27,8 @@
 						$( this ).prev( "input" ).val( ui.value );
 					}
 				});
-			input.after( slider ).hide();
+			slider.insertAfter( input );
+			input.hide();
 		});
 	}
 </script>
