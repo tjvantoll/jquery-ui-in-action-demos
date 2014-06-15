@@ -19,10 +19,10 @@
 		$( "input[type=range]" ).each(function( index, input ) {
 			var input = $( input ),
 				slider = $( "<div>" ).slider({
-					min: parseInt( input.attr( "min" ), 10) || 0,
-					max: parseInt( input.attr( "max" ), 10) || 100,
-					value: parseInt( input.attr( "value" ), 10) || 0,
-					step: parseInt( input.attr( "step" ), 10) || 1,
+					min: parseInt( input.attr( "min" ), 10 ) || 0,
+					max: parseInt( input.attr( "max" ), 10 ) || 100,
+					value: parseInt( input.attr( "value" ), 10 ) || 50,
+					step: parseInt( input.attr( "step" ), 10 ) || 1,
 					change: function( event, ui ) {
 						$( this ).prev( "input" ).val( ui.value );
 					}
