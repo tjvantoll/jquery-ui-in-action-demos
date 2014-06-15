@@ -18,17 +18,21 @@
 	if ( !Modernizr.inputtypes.range ) {
 		$( "input[type=range]" ).each(function( index, input ) {
 			var input = $( input ),
+				defaults = $.ui.slider.prototype.options,
 				slider = $( "<div>" ).slider({
-					min: parseInt( input.attr( "min" ), 10) || 0,
-					max: parseInt( input.attr( "max" ), 10) || 100,
-					value: parseInt( input.attr( "value" ), 10) || 0,
-					step: parseInt( input.attr( "step" ), 10) || 1,
+					min: parseInt( input.attr( "min" ), 10 ) ||
+						defaults.min,
+					max: parseInt( input.attr( "max" ), 10 ) ||
+						defaults.max,
+					value: parseInt( input.attr( "value" ), 10 ) ||
+						defaults.value,
+					step: parseInt( input.attr( "step" ), 10 ) ||
+						defaults.step,
 					change: function( event, ui ) {
 						$( this ).prev( "input" ).val( ui.value );
 					}
 				});
-			slider.insertAfter( input );
-			input.hide();
+			input.after( slider ).hide();
 		});
 	}
 </script>
