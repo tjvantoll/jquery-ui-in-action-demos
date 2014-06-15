@@ -5,6 +5,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Datalist Element Polyfill</title>
 	<link href="../css/jquery-ui.css" rel="stylesheet">
+
+	<!-- For this example, Modernizr must appear in the head so the HTML5
+	Shiv—that enables HTML5 elements in IE < 9—allows the usage of the
+	datalist element. For more details see
+	http://modernizr.com/docs/#installing -->
+	<script src="modernizr.js"></script>
 </head>
 <body>
 
@@ -19,7 +25,6 @@
 
 <script src="../js/jquery.js"></script>
 <script src="../js/jquery-ui.js"></script>
-<script src="modernizr.js"></script>
 
 <script>
 	if ( !Modernizr.input.list ) {
