@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Tabs @VERSION
+ * jQuery UI Tabs 1.11.0
  * http://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
@@ -25,7 +25,7 @@
 }(function( $ ) {
 
 return $.widget( "ui.tabs", {
-	version: "@VERSION",
+	version: "1.11.0",
 	delay: 300,
 	options: {
 		active: null,
@@ -360,12 +360,12 @@ return $.widget( "ui.tabs", {
 
 		this.tabs.not( this.active ).attr({
 			"aria-selected": "false",
+			"aria-expanded": "false",
 			tabIndex: -1
 		});
 		this.panels.not( this._getPanelForTab( this.active ) )
 			.hide()
 			.attr({
-				"aria-expanded": "false",
 				"aria-hidden": "true"
 			});
 
@@ -377,12 +377,12 @@ return $.widget( "ui.tabs", {
 				.addClass( "ui-tabs-active ui-state-active" )
 				.attr({
 					"aria-selected": "true",
+					"aria-expanded": "true",
 					tabIndex: 0
 				});
 			this._getPanelForTab( this.active )
 				.show()
 				.attr({
-					"aria-expanded": "true",
 					"aria-hidden": "false"
 				});
 		}
@@ -634,11 +634,11 @@ return $.widget( "ui.tabs", {
 			show();
 		}
 
-		toHide.attr({
-			"aria-expanded": "false",
-			"aria-hidden": "true"
+		toHide.attr( "aria-hidden", "true" );
+		eventData.oldTab.attr({
+			"aria-selected": "false",
+			"aria-expanded": "false"
 		});
-		eventData.oldTab.attr( "aria-selected", "false" );
 		// If we're switching tabs, remove the old tab from the tab order.
 		// If we're opening from collapsed state, remove the previous tab from the tab order.
 		// If we're collapsing, then keep the collapsing tab in the tab order.
@@ -651,12 +651,10 @@ return $.widget( "ui.tabs", {
 			.attr( "tabIndex", -1 );
 		}
 
-		toShow.attr({
-			"aria-expanded": "true",
-			"aria-hidden": "false"
-		});
+		toShow.attr( "aria-hidden", "false" );
 		eventData.newTab.attr({
 			"aria-selected": "true",
+			"aria-expanded": "true",
 			tabIndex: 0
 		});
 	},

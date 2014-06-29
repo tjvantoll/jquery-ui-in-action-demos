@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Sortable @VERSION
+ * jQuery UI Sortable 1.11.0
  * http://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
@@ -26,7 +26,7 @@
 }(function( $ ) {
 
 return $.widget("ui.sortable", $.ui.mouse, {
-	version: "@VERSION",
+	version: "1.11.0",
 	widgetEventPrefix: "sort",
 	ready: false,
 	options: {
@@ -391,7 +391,7 @@ return $.widget("ui.sortable", $.ui.mouse, {
 			// currentContainer is switched before the placeholder is moved.
 			//
 			// Without this, moving items in "sub-sortables" can cause
-			// the placeholder to jitter beetween the outer and inner container.
+			// the placeholder to jitter between the outer and inner container.
 			if (item.instance !== this.currentContainer) {
 				continue;
 			}

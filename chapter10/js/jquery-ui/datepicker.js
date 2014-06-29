@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Datepicker @VERSION
+ * jQuery UI Datepicker 1.11.0
  * http://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
@@ -23,7 +23,7 @@
 	}
 }(function( $ ) {
 
-$.extend($.ui, { datepicker: { version: "@VERSION" } });
+$.extend($.ui, { datepicker: { version: "1.11.0" } });
 
 var datepicker_instActive;
 
@@ -139,6 +139,8 @@ function Datepicker() {
 		disabled: false // The initial disabled state
 	};
 	$.extend(this._defaults, this.regional[""]);
+	this.regional.en = $.extend( true, {}, this.regional[ "" ]);
+	this.regional[ "en-US" ] = $.extend( true, {}, this.regional.en );
 	this.dpDiv = datepicker_bindHover($("<div id='" + this._mainDivId + "' class='ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>"));
 }
 
@@ -797,7 +799,7 @@ $.extend(Datepicker.prototype, {
 		datepicker_instActive = inst; // for delegate hover events
 		inst.dpDiv.empty().append(this._generateHTML(inst));
 		this._attachHandlers(inst);
-		inst.dpDiv.find("." + this._dayOverClass + " a").mouseover();
+		inst.dpDiv.find("." + this._dayOverClass + " a");
 
 		var origyearshtml,
 			numMonths = this._getNumberOfMonths(inst),
@@ -2064,7 +2066,7 @@ $.fn.datepicker = function(options){
 $.datepicker = new Datepicker(); // singleton instance
 $.datepicker.initialized = false;
 $.datepicker.uuid = new Date().getTime();
-$.datepicker.version = "@VERSION";
+$.datepicker.version = "1.11.0";
 
 return $.datepicker;
 

@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Button @VERSION
+ * jQuery UI Button 1.11.0
  * http://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
@@ -52,7 +52,7 @@ var lastActive,
 	};
 
 $.widget( "ui.button", {
-	version: "@VERSION",
+	version: "1.11.0",
 	defaultElement: "<button>",
 	options: {
 		disabled: null,
@@ -260,7 +260,11 @@ $.widget( "ui.button", {
 			this.widget().toggleClass( "ui-state-disabled", !!value );
 			this.element.prop( "disabled", !!value );
 			if ( value ) {
-				this.buttonElement.removeClass( "ui-state-focus" );
+				if ( this.type === "checkbox" || this.type === "radio" ) {
+					this.buttonElement.removeClass( "ui-state-focus" );
+				} else {
+					this.buttonElement.removeClass( "ui-state-focus ui-state-active" );
+				}
 			}
 			return;
 		}
@@ -344,7 +348,7 @@ $.widget( "ui.button", {
 });
 
 $.widget( "ui.buttonset", {
-	version: "@VERSION",
+	version: "1.11.0",
 	options: {
 		items: "button, input[type=button], input[type=submit], input[type=reset], input[type=checkbox], input[type=radio], a, :data(ui-button)"
 	},
@@ -366,15 +370,17 @@ $.widget( "ui.buttonset", {
 	},
 
 	refresh: function() {
-		var rtl = this.element.css( "direction" ) === "rtl";
+		var rtl = this.element.css( "direction" ) === "rtl",
+			allButtons = this.element.find( this.options.items ),
+			existingButtons = allButtons.filter( ":ui-button" );
 
-		this.buttons = this.element.find( this.options.items )
-			.filter( ":ui-button" )
-				.button( "refresh" )
-			.end()
-			.not( ":ui-button" )
-				.button()
-			.end()
+		// Initialize new buttons
+		allButtons.not( ":ui-button" ).button();
+
+		// Refresh existing buttons
+		existingButtons.button( "refresh" );
+
+		this.buttons = allButtons
 			.map(function() {
 				return $( this ).button( "widget" )[ 0 ];
 			})

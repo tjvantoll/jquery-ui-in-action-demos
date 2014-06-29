@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Dialog @VERSION
+ * jQuery UI Dialog 1.11.0
  * http://jqueryui.com
  *
  * Copyright 2014 jQuery Foundation and other contributors
@@ -30,7 +30,7 @@
 }(function( $ ) {
 
 return $.widget( "ui.dialog", {
-	version: "@VERSION",
+	version: "1.11.0",
 	options: {
 		appendTo: "body",
 		autoOpen: true,
@@ -334,7 +334,7 @@ return $.widget( "ui.dialog", {
 				}
 
 				// prevent tabbing out of dialogs
-				if ( event.keyCode !== $.ui.keyCode.TAB ) {
+				if ( event.keyCode !== $.ui.keyCode.TAB || event.isDefaultPrevented() ) {
 					return;
 				}
 				var tabbables = this.uiDialog.find( ":tabbable" ),
@@ -342,10 +342,14 @@ return $.widget( "ui.dialog", {
 					last = tabbables.filter( ":last" );
 
 				if ( ( event.target === last[0] || event.target === this.uiDialog[0] ) && !event.shiftKey ) {
-					first.focus( 1 );
+					this._delay(function() {
+						first.focus();
+					});
 					event.preventDefault();
 				} else if ( ( event.target === first[0] || event.target === this.uiDialog[0] ) && event.shiftKey ) {
-					last.focus( 1 );
+					this._delay(function() {
+						last.focus();
+					});
 					event.preventDefault();
 				}
 			},
@@ -839,7 +843,7 @@ return $.widget( "ui.dialog", {
 
 			if ( !overlays ) {
 				this.document
-					.off( "focusin" )
+					.unbind( "focusin" )
 					.removeData( "ui-dialog-overlays" );
 			} else {
 				this.document.data( "ui-dialog-overlays", overlays );
