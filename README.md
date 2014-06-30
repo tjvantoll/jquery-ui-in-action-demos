@@ -18,28 +18,28 @@ To give you a sense of the full contents of the book, here's its table of conten
 
 <ul>
 	<li>PART 1: MEET JQUERY UI
-		<ol>
-			<li>Introducing jQuery UI</li>
-			<li>Enhancing User Interfaces with Widgets</li>
-		</ol>
+		<ul>
+			<li>1. Introducing jQuery UI</li>
+			<li>2. Enhancing User Interfaces with Widgets</li>
+		</ul>
 	</li>
 	<li>PART 2: JQUERY UI CORE
-		<ol start="3">
-			<li>Building Complex Web Forms with jQuery UI</li>
-			<li>Enhancing Interfaces with Layout & Utility Widgets</li>
-			<li>Adding Interaction to Your Interfaces</li>
-			<li>Creating Rich Animations with Effects</li>
-			<li>Theming and Styling Applications with jQuery UI</li>
-		</ol>
+		<ul>
+			<li>3. Building Complex Web Forms with jQuery UI</li>
+			<li>4. Enhancing Interfaces with Layout & Utility Widgets</li>
+			<li>5. Adding Interaction to Your Interfaces</li>
+			<li>6. Creating Rich Animations with Effects</li>
+			<li>7. Theming and Styling Applications with jQuery UI</li>
+		</ul>
 	</li>
 	<li>Part 3: CUSTOMIZATION AND ADVANCED USAGE
-		<ol start="8">
-			<li>Using the Widget Factory to Build Stateful Plugins</li>
-			<li>Extending Widgets with the Widget Factory</li>
-			<li>Preparing Your Application for Production</li>
-			<li>Building a Flight-Search Application</li>
-			<li>Under the Hood of jQuery UI</li>
-		</ol>
+		<ul>
+			<li>8. Using the Widget Factory to Build Stateful Plugins</li>
+			<li>9. Extending Widgets with the Widget Factory</li>
+			<li>10. Preparing Your Application for Production</li>
+			<li>11. Building a Flight-Search Application</li>
+			<li>12. Under the Hood of jQuery UI</li>
+		</ul>
 	</li>
 	<li>Appendixes
 		<ul>
