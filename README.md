@@ -1,4 +1,5 @@
 # jQuery UI in Action
+**Covers jQuery UI 1.11!**
 
 <img src="http://tjvantoll.com/images/book.jpg" alt="jQuery UI in Action book cover">
 
