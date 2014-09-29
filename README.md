@@ -56,7 +56,7 @@ To give you a sense of the full contents of the book, here's its table of conten
 
 ### Where can I get the book?
 
-*jQuery UI in Action* is available for purchase on [Manning's site](http://tjvantoll.com/jquery-ui-in-action.html). You can [read the first chapter](http://manning.com/vantoll/jQueryUI_meap_ch01.pdf) for free at any time.
+*jQuery UI in Action* is available for purchase on [Manning's site](http://tjvantoll.com/jquery-ui-in-action.html). You can read [chapter 1](http://manning.com/vantoll/jQueryUI_CH01.pdf) and [chapter 9](http://manning.com/vantoll/jQueryUI_CH09.pdf) for free at any time.
 
 ### Feedback
 
