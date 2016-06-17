@@ -1,7 +1,7 @@
 # jQuery UI in Action
 **Covers jQuery UI 1.11!**
 
-<img src="http://tjvantoll.com/images/book.jpg" alt="jQuery UI in Action book cover">
+<img src="https://www.tjvantoll.com/images/book.jpg" alt="jQuery UI in Action book cover">
 
 Accompanying code samples and snippets for [jQuery UI in Action](http://tjvantoll.com/jquery-ui-in-action.html) book by [Manning](http://manning.com). [Download this repository](https://github.com/tjvantoll/jquery-ui-in-action-demos/archive/master.zip) and open the `index.html` file to see a list of all demos available.
 
